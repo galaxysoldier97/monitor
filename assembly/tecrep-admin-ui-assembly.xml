@@ -1,0 +1,20 @@
+<assembly>
+    <id>assembly</id>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <fileSets>
+        <fileSet>
+            <directory>dist</directory>
+            <outputDirectory>/</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>src</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>.htaccess</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</assembly>

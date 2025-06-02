@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorAlert snapshot 1`] = `
+Array [
+  <div
+    className="MuiBox-root MuiBox-root-4"
+    style={Object {}}
+  >
+    <div
+      className="makeStyles-root-1"
+      style={
+        Object {
+          "maxWidth": 500,
+        }
+      }
+    >
+      <div
+        className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center MuiGrid-justify-xs-space-between"
+      >
+        <div
+          className="MuiGrid-root MuiGrid-item"
+        >
+          <p
+            className="MuiTypography-root makeStyles-title-2 MuiTypography-body1"
+          >
+            An error occurred
+          </p>
+          <p
+            className="MuiTypography-root MuiTypography-body1"
+          >
+            test
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>,
+  ",",
+]
+`;

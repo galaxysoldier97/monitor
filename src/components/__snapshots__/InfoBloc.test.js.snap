@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InfoBloc snapshot 1`] = `
+<div
+  className="MuiPaper-root makeStyles-paper-1 MuiPaper-elevation0 MuiPaper-rounded"
+>
+  <div
+    className="MuiGrid-root makeStyles-paperContent-4 MuiGrid-container MuiGrid-direction-xs-column"
+  >
+    <div
+      className="MuiGrid-root MuiGrid-item"
+    >
+      <p
+        className="MuiTypography-root makeStyles-key-2 MuiTypography-body1"
+      >
+        test
+      </p>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item"
+    >
+      <h5
+        className="MuiTypography-root makeStyles-value-3 MuiTypography-h5 MuiTypography-noWrap"
+        id="test"
+      >
+        vtest
+      </h5>
+    </div>
+  </div>
+</div>
+`;

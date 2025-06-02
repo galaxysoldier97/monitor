@@ -1,0 +1,6 @@
+Dockerfile
+Jenkins*
+jmeter.jmx
+pom.xml
+roles.txt
+./node_modules

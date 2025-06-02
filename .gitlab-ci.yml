@@ -1,0 +1,27 @@
+include:
+  - project: 'mtmc/projects/it-factory/piplib'
+    ref: develop
+    file: '/pipelines/npm-deploy/epicCY-ci-galaxion-epic.gitlab-ci.yml'
+  - project: 'mtmc/projects/it-factory/piplib'
+    ref: develop
+    file: '/pipelines/npm-deploy/mtMC-ci-itinternal.gitlab-ci.yml'
+  - project: 'mtmc/projects/it-factory/piplib'
+    ref: develop
+    file: '/pipelines/npm.gitlab-ci.yml'
+
+default:
+  image: jfrog-artifactory.steelhome.internal/docker/node:18.12.0
+
+sonarqube-nodejs:
+  allow_failure: true
+
+.kaniko:buildpush:
+  variables:
+    KUBERNETES_MEMORY_REQUEST: 8Gi
+    KUBERNETES_MEMORY_LIMIT: 8Gi
+
+variables:
+  BUILD_EIR: "true"
+
+test:
+  allow_failure: true

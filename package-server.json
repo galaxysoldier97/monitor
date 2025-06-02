@@ -1,0 +1,19 @@
+{
+  "name": "tecrep-monitor-server",
+  "version": "1.0.0",
+  "private": true,
+  "main": "../server.js",
+  "scripts": {
+    "serve": "node ./server.js",
+    "generate-envs-prod": "node ./generateRuntimeEnvs.js --dest ./dist"
+  },
+  "author": "MonacoTelecom",
+  "license": "MIT",
+  "dependencies": {
+    
+    "express": "^4.18.1",
+    "cross-spawn": "7.0.3",
+    "dotenv": "8.2.0",
+    "minimist": "1.2.6"
+  }
+}

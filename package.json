@@ -1,0 +1,134 @@
+{
+  "name": "tecrep-monitor",
+  "version": "4.9.0-SNAPSHOT",
+  "description": "Technical Repository Monitoring",
+  "engines": {
+    "npm": ">=3"
+  },
+  "scripts": {
+    "start": "npm run generate-envs-dev && npm-run-all --parallel open:src lint:watch",
+    "open:src": "npx babel-node tools/srcServer.js",
+    "open:dist": "npx babel-node tools/distServer.js",
+    "lint": "esw webpack.config.* src tools --color",
+    "lint:watch": "npm run lint -- --watch",
+    "clean-dist": "npm run remove-dist && mkdir dist",
+    "remove-dist": "rimraf ./dist",
+    "prebuild": "npm run clean-dist && npm run lint && npm run test",
+    "docker-build-mt": "node ./node_modules/webpack/bin/webpack.js --config ./webpack.config.docker.mt.js --mode production",
+    "generate-envs-dev": "node ./generateRuntimeEnvs.js --dest ./src",
+    "generate-envs-prod": "node ./generateRuntimeEnvs.js --dest ./dist",
+    "serve": "node server.js",
+    "test": "jest --coverage",
+    "testupdate": "jest -u --coverage",
+    "sonar": "node sonar-project.js"
+  },
+  "author": "Monaco Telecom",
+  "dependencies": {
+    "@loadable/component": "^5.15.3",
+    "@material-ui/core": "4.9.8",
+    "@material-ui/icons": "4.9.1",
+    "@material-ui/styles": "4.9.6",
+    "@material-ui/system": "4.9.6",
+    "axios": "0.27.2",
+    "classnames": "2.2.6",
+    "connected-react-router": "6.6.1",
+    "cross-spawn": "7.0.3",
+    "css-loader": "3.4.2",
+    "i18next": "23.6.0",
+    "leaflet": "1.6.0",
+    "leaflet-color-markers": "file:local_modules/leaflet-color-markers",
+    "leaflet.markercluster": "^1.4.1",
+    "minimist": "1.2.6",
+    "moment": "2.29.4",
+     "mt-react-library": "file:./mt-react-library-1.1.1.tgz",
+  "mt-user-management": "file:./mt-user-management-2.1.0.tgz",
+    "pixi.js": "4.4.0",
+    "prop-types": "15.7.2",
+    "react": "16.12.0",
+    "react-dimensions": "^1.3.1",
+    "react-dom": "16.12.0",
+    "react-i18next": "13.3.1",
+    "react-intl": "6.2.5",
+    "react-leaflet": "^2.4.0",
+    "react-leaflet-control": "^2.1.1",
+    "react-leaflet-markercluster": "2.0.0-rc3",
+    "react-pixi-fiber": "^0.8.0",
+    "react-redux": "7.1.3",
+    "react-router-dom": "5.1.2",
+    "recharts": "2.3.2",
+    "redux": "^4.2.0",
+    "redux-logger": "3.0.6",
+    "xlsx": "0.18.5"
+  },
+  "devDependencies": {
+    "@babel/core": "7.18.13",
+    "@babel/node": "7.18.5",
+    "@babel/preset-env": "7.18.0",
+    "@babel/preset-react": "7.18.6",
+    "@babel/register": "7.18.6",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "10.1.0",
+    "babel-jest": "26.6.3",
+    "babel-loader": "8.0.6",
+    "babel-plugin-transform-react-constant-elements": "6.23.0",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.24",
+    "browser-sync": "2.27.11",
+    "chalk": "3.0.0",
+    "dotenv": "8.2.0",
+    "eslint": "7.14.0",
+    "eslint-plugin-import": "2.25.0",
+    "eslint-plugin-jest": "24.1.3",
+    "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-watch": "7.0.0",
+    "file-loader": "5.0.2",
+    "html-webpack-plugin": "4.5.2",
+    "jest": "26.6.3",
+    "npm-run-all": "4.1.5",
+    "open": "7.0.0",
+    "react-test-renderer": "16.12.0",
+    "rimraf": "3.0.0",
+    "style-loader": "1.1.2",
+    "webpack": "4.46.0",
+    "webpack-cli": "3.3.10",
+    "webpack-dev-middleware": "3.7.2",
+    "webpack-hot-middleware": "2.25.0",
+    "webpack-md5-hash": "0.0.6"
+  },
+  "resolutions": {
+    "babel-core": "7.0.0-bridge.0"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "material",
+    "material-ui",
+    "template",
+    "admin"
+  ],
+  "browser": {
+    "fs": false
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx,js,jsx}",
+      "!src/config/*"
+    ]
+  }
+}

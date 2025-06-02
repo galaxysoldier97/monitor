@@ -1,0 +1,12 @@
+services:
+  k6:
+    image: loadimpact/k6:latest
+    command: run /loadtests/index.js --insecure-skip-tls-verify
+    environment:
+      - ENV_API_URL=https://api-ci.crm.epic.infra
+      - ENV_SERVICE_URL=http://tecrep-ci.crm.epic.infra
+      - ENV_IAM_URL=https://iam-ci.crm.epic.infra/auth/realms/epic-ci/protocol/openid-connect/token
+      - ENV_CLIENT_SECRET=123456789
+      - ENV_CLIENT_ID=restassured
+    volumes:
+      - ./:/loadtests

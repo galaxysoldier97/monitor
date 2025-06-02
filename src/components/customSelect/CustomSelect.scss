@@ -1,0 +1,36 @@
+.custom-select-root {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+  background: white;
+  border: 1px solid #bbbbbb;
+}
+
+.select-option-menu {
+  box-shadow: rgba(101, 119, 134, 0.2) 0 0 15px, rgba(101, 119, 134, 0.15) 0 0 3px 1px;
+}
+
+.select-item{
+  background-color: white;
+  padding: 8px;
+  color: black;
+  cursor: pointer;
+}
+.select-item:hover {
+  background-color: #f2f2f2;
+}
+
+.select-filled:focus{
+  border-radius: 4px;
+}
+
+.select-input:focus{
+  background-color: #f3f3f3;
+}
+

@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Equipment linked id and category not null 1`] = `
+<a
+  href="/equipment/123"
+  onClick={[Function]}
+>
+  123
+   
+  <strong>
+    -
+  </strong>
+   
+  test
+</a>
+`;
+
+exports[`Equipment linked id and category null 1`] = `
+<div>
+  -
+</div>
+`;
+
+exports[`Equipment linked id not null and category null 1`] = `
+<div
+  className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 MuiGrid-align-items-xs-center"
+>
+  <div
+    className="MuiGrid-root MuiGrid-item"
+  >
+    123
+  </div>
+  <div
+    className="MuiGrid-root MuiGrid-item"
+  >
+    <svg
+      aria-describedby={null}
+      aria-hidden="true"
+      className="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+      focusable="false"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "color": "orange",
+        }
+      }
+      title={null}
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"
+      />
+    </svg>
+  </div>
+</div>
+`;
+
+exports[`Equipment linked id null and category not null 1`] = `
+<div>
+  -
+</div>
+`;

@@ -1,0 +1,1013 @@
+{
+  "allowRemoteResourceManagement": true,
+  "policyEnforcementMode": "ENFORCING",
+  "resources": [
+    {
+      "name": "stock",
+      "type": "urn:tecrep-monitor:resources:stock",
+      "ownerManagedAccess": false,
+      "displayName": "Stock",
+      "attributes": {},
+      "uris": [],
+      "scopes": [
+        {
+          "name": "HANDSETS_READ"
+        }
+      ]
+    },
+    {
+      "name": "dashboard",
+      "type": "urn:tecrep-monitor:resources:dashboard",
+      "ownerManagedAccess": false,
+      "attributes": {},
+      "uris": [],
+      "scopes": [
+        {
+          "name": "DASHBOARD_READ"
+        }
+      ]
+    },
+    {
+      "name": "addresses",
+      "type": "urn:tecrep-monitor:resources:addresses",
+      "ownerManagedAccess": false,
+      "attributes": {},
+      "uris": [],
+      "scopes": [
+        {
+          "name": "ADDRESSES_DELETE"
+        },
+        {
+          "name": "ADDRESSES_EDIT"
+        },
+        {
+          "name": "ADDRESS_CONF_EDIT"
+        },
+        {
+          "name": "ADDRESS_CONF_READ"
+        },
+        {
+          "name": "ADDRESSES_CREATE"
+        },
+        {
+          "name": "ADDRESSES_READ"
+        }
+      ]
+    },
+    {
+      "name": "services",
+      "type": "urn:tecrep-monitor:resources:services",
+      "ownerManagedAccess": false,
+      "attributes": {},
+      "uris": [],
+      "scopes": [
+        {
+          "name": "SERVICESACCESS_CREATE"
+        },
+        {
+          "name": "SERVICESACCESS_EDIT"
+        },
+        {
+          "name": "SERVICECOMPONENT_DELETE"
+        },
+        {
+          "name": "SERVICES_CONF_CREATE"
+        },
+        {
+          "name": "SERVICES_CONF_EDIT"
+        },
+        {
+          "name": "SERVICESCOMPONENT_CREATE"
+        },
+        {
+          "name": "SERVICEACCESS_DELETE"
+        },
+        {
+          "name": "SERVICESCOMPONENT_EDIT"
+        },
+        {
+          "name": "SERVICESCOMPONENT_READ"
+        },
+        {
+          "name": "SERVICES_CONF_READ"
+        },
+        {
+          "name": "SERVICES_CONF_DELETE"
+        },
+        {
+          "name": "SERVICESCOMPONENT_DELETE"
+        },
+        {
+          "name": "SERVICESACCESS_DELETE"
+        },
+        {
+          "name": "SERVICESACCESS_READ"
+        }
+      ]
+    },
+    {
+      "name": "ancillaryequipments",
+      "type": "urn:tecrep-monitor:resources:ancillaryequipments",
+      "ownerManagedAccess": false,
+      "attributes": {},
+      "uris": [],
+      "scopes": [
+        {
+          "name": "ANCILLARYEQUIPMENTS_DELETE"
+        },
+        {
+          "name": "ANCILLARYEQUIPMENTS_READ"
+        },
+        {
+          "name": "ANCILLARYEQUIPMENTS_EDIT"
+        }
+      ]
+    },
+    {
+      "name": "Default Resource",
+      "type": "urn:tecrep-monitor:resources:default",
+      "ownerManagedAccess": false,
+      "attributes": {},
+      "uris": [
+        "/*"
+      ]
+    },
+    {
+      "name": "equipments",
+      "type": "urn:tecrep-monitor:resources:equipments",
+      "ownerManagedAccess": false,
+      "attributes": {},
+      "uris": [],
+      "scopes": [
+        {
+          "name": "CPE_DELETE"
+        },
+        {
+          "name": "ANCILLARYEQUIPMENTS_EDIT"
+        },
+        {
+          "name": "SIMCARD_READ"
+        },
+        {
+          "name": "CPE_EDIT"
+        },
+        {
+          "name": "SIMCARD_BATCH"
+        },
+        {
+          "name": "SIMCARD_CREATE"
+        },
+        {
+          "name": "EQUIPMENTS_CONF_DELETE"
+        },
+        {
+          "name": "EQUIPMENTS_CONF_EDIT"
+        },
+        {
+          "name": "ANCILLARYEQUIPMENTS_DELETE"
+        },
+        {
+          "name": "ANCILLARYEQUIPMENTS_READ"
+        },
+        {
+          "name": "CPE_CREATE"
+        },
+        {
+          "name": "EQUIPMENTS_CONF_READ"
+        },
+        {
+          "name": "SIMCARD_DELETE"
+        },
+        {
+          "name": "CPE_READ"
+        },
+        {
+          "name": "SIMCARD_EDIT"
+        },
+        {
+          "name": "ANCILLARYEQUIPMENTS_CREATE"
+        },
+        {
+          "name": "EQUIPMENTS_CONF_CREATE"
+        }
+      ]
+    },
+    {
+      "name": "resources",
+      "type": "urn:tecrep-monitor:resources:resources",
+      "ownerManagedAccess": false,
+      "attributes": {},
+      "uris": [],
+      "scopes": [
+        {
+          "name": "NUMBERS_READ"
+        },
+        {
+          "name": "NUMBERS_DELETE"
+        },
+        {
+          "name": "NUMBERS_EDIT"
+        },
+        {
+          "name": "NUMBERS_CONF_READ"
+        },
+        {
+          "name": "NUMBERS_CONF_EDIT"
+        },
+        {
+          "name": "NUMBERS_CONF_CREATE"
+        },
+        {
+          "name": "NUMBERS_CREATE"
+        },
+        {
+          "name": "NUMBERS_CONF_DELETE"
+        }
+      ]
+    },
+    {
+      "name": "settings",
+      "type": "urn:tecrep-monitor:resources:settings",
+      "ownerManagedAccess": false,
+      "attributes": {},
+      "uris": [],
+      "scopes": [
+        {
+          "name": "SETTINGS_READ"
+        }
+      ]
+    }
+  ],
+  "policies": [
+    {
+      "name": "ADDRESS_DELETE",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"tecrep-monitor/ADDRESS_DELETE\",\"required\":false}]"
+      }
+    },
+    {
+      "name": "EQUIPMENT_READ",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"tecrep-monitor/EQUIPMENT_READ\",\"required\":false}]"
+      }
+    },
+    {
+      "name": "EQUIPMENT_WRITE",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"tecrep-monitor/EQUIPMENT_WRITE\",\"required\":false}]"
+      }
+    },
+    {
+      "name": "ADDRESS_READ",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"tecrep-monitor/ADDRESS_READ\",\"required\":false}]"
+      }
+    },
+    {
+      "name": "SERVICE_DELETE",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"tecrep-monitor/SERVICE_DELETE\",\"required\":false}]"
+      }
+    },
+    {
+      "name": "SERVICE_READ",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"tecrep-monitor/SERVICE_READ\",\"required\":false}]"
+      }
+    },
+    {
+      "name": "RESOURCE_DELETE",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"tecrep-monitor/RESOURCE_DELETE\",\"required\":false}]"
+      }
+    },
+    {
+      "name": "EQUIPMENT_DELETE",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"tecrep-monitor/EQUIPMENT_DELETE\",\"required\":false}]"
+      }
+    },
+    {
+      "name": "STOCK_READ",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"tecrep-monitor/STOCK_READ\",\"required\":false}]"
+      }
+    },
+    {
+      "name": "ADDRESS_WRITE",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"tecrep-monitor/ADDRESS_WRITE\",\"required\":false}]"
+      }
+    },
+    {
+      "name": "SERVICE_WRITE",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"tecrep-monitor/SERVICE_WRITE\",\"required\":false}]"
+      }
+    },
+    {
+      "name": "RESOURCE_WRITE",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"tecrep-monitor/RESOURCE_WRITE\",\"required\":false}]"
+      }
+    },
+    {
+      "name": "RESOURCE_READ",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"tecrep-monitor/RESOURCE_READ\",\"required\":false}]"
+      }
+    },
+    {
+      "name": "numbers_conf_create",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"resources\"]",
+        "scopes": "[\"NUMBERS_CONF_CREATE\"]",
+        "applyPolicies": "[\"RESOURCE_WRITE\"]"
+      }
+    },
+    {
+      "name": "addresses_edit_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"addresses\"]",
+        "scopes": "[\"ADDRESSES_EDIT\"]",
+        "applyPolicies": "[\"ADDRESS_WRITE\"]"
+      }
+    },
+    {
+      "name": "simcards_create_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"equipments\"]",
+        "scopes": "[\"SIMCARD_CREATE\"]",
+        "applyPolicies": "[\"EQUIPMENT_WRITE\"]"
+      }
+    },
+    {
+      "name": "equipments_conf_edit_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"equipments\"]",
+        "scopes": "[\"EQUIPMENTS_CONF_EDIT\"]",
+        "applyPolicies": "[\"EQUIPMENT_WRITE\"]"
+      }
+    },
+    {
+      "name": "numbers_read_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"resources\"]",
+        "scopes": "[\"NUMBERS_READ\"]",
+        "applyPolicies": "[\"RESOURCE_READ\"]"
+      }
+    },
+    {
+      "name": "servicesaccess_edit_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"services\"]",
+        "scopes": "[\"SERVICESACCESS_EDIT\"]",
+        "applyPolicies": "[\"SERVICE_WRITE\"]"
+      }
+    },
+    {
+      "name": "ancillaryequipments_read_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"ancillaryequipments\"]",
+        "scopes": "[\"ANCILLARYEQUIPMENTS_READ\"]",
+        "applyPolicies": "[\"EQUIPMENT_READ\"]"
+      }
+    },
+    {
+      "name": "numbers_conf_delete",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"resources\"]",
+        "scopes": "[\"NUMBERS_CONF_DELETE\"]",
+        "applyPolicies": "[\"RESOURCE_DELETE\"]"
+      }
+    },
+    {
+      "name": "simcards_delete_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"equipments\"]",
+        "scopes": "[\"SIMCARD_DELETE\"]",
+        "applyPolicies": "[\"EQUIPMENT_DELETE\"]"
+      }
+    },
+    {
+      "name": "address_conf_edit_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"addresses\"]",
+        "scopes": "[\"ADDRESS_CONF_EDIT\"]",
+        "applyPolicies": "[\"ADDRESS_WRITE\"]"
+      }
+    },
+    {
+      "name": "simcards_read_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"equipments\"]",
+        "scopes": "[\"SIMCARD_READ\"]",
+        "applyPolicies": "[\"EQUIPMENT_READ\"]"
+      }
+    },
+    {
+      "name": "numbers_conf_read",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"resources\"]",
+        "scopes": "[\"NUMBERS_CONF_READ\"]",
+        "applyPolicies": "[\"RESOURCE_READ\"]"
+      }
+    },
+    {
+      "name": "numbers_conf_edit",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"resources\"]",
+        "scopes": "[\"NUMBERS_CONF_EDIT\"]",
+        "applyPolicies": "[\"RESOURCE_WRITE\"]"
+      }
+    },
+    {
+      "name": "ancillaryequipments_delete_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"equipments\"]",
+        "scopes": "[\"ANCILLARYEQUIPMENTS_DELETE\"]",
+        "applyPolicies": "[\"EQUIPMENT_DELETE\"]"
+      }
+    },
+    {
+      "name": "services_conf_create_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"services\"]",
+        "scopes": "[\"SERVICES_CONF_CREATE\"]",
+        "applyPolicies": "[\"SERVICE_WRITE\"]"
+      }
+    },
+    {
+      "name": "servicescomponent_read_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"services\"]",
+        "scopes": "[\"SERVICESCOMPONENT_READ\"]",
+        "applyPolicies": "[\"SERVICE_READ\"]"
+      }
+    },
+    {
+      "name": "servicesaccess_read_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"services\"]",
+        "scopes": "[\"SERVICESACCESS_READ\"]",
+        "applyPolicies": "[\"SERVICE_READ\"]"
+      }
+    },
+    {
+      "name": "numbers_edit_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"resources\"]",
+        "scopes": "[\"NUMBERS_EDIT\"]",
+        "applyPolicies": "[\"RESOURCE_WRITE\"]"
+      }
+    },
+    {
+      "name": "simcards_batch",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"equipments\"]",
+        "scopes": "[\"SIMCARD_BATCH\"]",
+        "applyPolicies": "[\"EQUIPMENT_WRITE\"]"
+      }
+    },
+    {
+      "name": "cpes_delete_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"equipments\"]",
+        "scopes": "[\"CPE_DELETE\"]",
+        "applyPolicies": "[\"EQUIPMENT_DELETE\"]"
+      }
+    },
+    {
+      "name": "servicesaccess_create_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"services\"]",
+        "scopes": "[\"SERVICESACCESS_CREATE\"]",
+        "applyPolicies": "[\"SERVICE_WRITE\"]"
+      }
+    },
+    {
+      "name": "servicesaccess_delete_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"services\"]",
+        "scopes": "[\"SERVICESACCESS_DELETE\"]",
+        "applyPolicies": "[\"SERVICE_DELETE\"]"
+      }
+    },
+    {
+      "name": "cpes_create_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"equipments\"]",
+        "scopes": "[\"CPE_CREATE\"]",
+        "applyPolicies": "[\"EQUIPMENT_WRITE\"]"
+      }
+    },
+    {
+      "name": "services_conf_read_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"services\"]",
+        "scopes": "[\"SERVICES_CONF_READ\"]",
+        "applyPolicies": "[\"SERVICE_READ\"]"
+      }
+    },
+    {
+      "name": "numbers_create_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"resources\"]",
+        "scopes": "[\"NUMBERS_CREATE\"]",
+        "applyPolicies": "[\"RESOURCE_WRITE\"]"
+      }
+    },
+    {
+      "name": "addresses_delete_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"addresses\"]",
+        "scopes": "[\"ADDRESSES_DELETE\"]",
+        "applyPolicies": "[\"ADDRESS_DELETE\"]"
+      }
+    },
+    {
+      "name": "numbers_delete_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"resources\"]",
+        "scopes": "[\"NUMBERS_DELETE\"]",
+        "applyPolicies": "[\"RESOURCE_DELETE\"]"
+      }
+    },
+    {
+      "name": "services_conf_edit_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"services\"]",
+        "scopes": "[\"SERVICES_CONF_EDIT\"]",
+        "applyPolicies": "[\"SERVICE_WRITE\"]"
+      }
+    },
+    {
+      "name": "servicescomponent_delete_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"services\"]",
+        "scopes": "[\"SERVICESCOMPONENT_DELETE\"]",
+        "applyPolicies": "[\"SERVICE_DELETE\"]"
+      }
+    },
+    {
+      "name": "services_conf_delete_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"services\"]",
+        "scopes": "[\"SERVICES_CONF_DELETE\"]",
+        "applyPolicies": "[\"SERVICE_DELETE\"]"
+      }
+    },
+    {
+      "name": "servicescomponent_edit_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"services\"]",
+        "scopes": "[\"SERVICESCOMPONENT_EDIT\"]",
+        "applyPolicies": "[\"SERVICE_WRITE\"]"
+      }
+    },
+    {
+      "name": "simcards_edit_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"equipments\"]",
+        "scopes": "[\"SIMCARD_EDIT\"]",
+        "applyPolicies": "[\"EQUIPMENT_WRITE\"]"
+      }
+    },
+    {
+      "name": "addresses_create_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"addresses\"]",
+        "scopes": "[\"ADDRESSES_CREATE\"]",
+        "applyPolicies": "[\"ADDRESS_WRITE\"]"
+      }
+    },
+    {
+      "name": "servicescomponent_create_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"services\"]",
+        "scopes": "[\"SERVICESCOMPONENT_CREATE\"]",
+        "applyPolicies": "[\"SERVICE_WRITE\"]"
+      }
+    },
+    {
+      "name": "dashboard_read_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "AFFIRMATIVE",
+      "config": {
+        "resources": "[\"dashboard\"]",
+        "scopes": "[\"DASHBOARD_READ\"]",
+        "applyPolicies": "[\"SERVICE_READ\",\"RESOURCE_READ\",\"EQUIPMENT_READ\"]"
+      }
+    },
+    {
+      "name": "equipments_conf_delete_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"equipments\"]",
+        "scopes": "[\"EQUIPMENTS_CONF_DELETE\"]",
+        "applyPolicies": "[\"EQUIPMENT_DELETE\"]"
+      }
+    },
+    {
+      "name": "ancillaryequipments_create_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"equipments\"]",
+        "scopes": "[\"ANCILLARYEQUIPMENTS_CREATE\"]",
+        "applyPolicies": "[\"EQUIPMENT_WRITE\"]"
+      }
+    },
+    {
+      "name": "addresses_read_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"addresses\"]",
+        "scopes": "[\"ADDRESSES_READ\"]",
+        "applyPolicies": "[\"ADDRESS_READ\"]"
+      }
+    },
+    {
+      "name": "equipments_conf_read_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"equipments\"]",
+        "scopes": "[\"EQUIPMENTS_CONF_READ\"]",
+        "applyPolicies": "[\"EQUIPMENT_READ\"]"
+      }
+    },
+    {
+      "name": "handsets_read_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"stock\"]",
+        "scopes": "[\"HANDSETS_READ\"]",
+        "applyPolicies": "[\"STOCK_READ\"]"
+      }
+    },
+    {
+      "name": "settings_read_permissions",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "AFFIRMATIVE",
+      "config": {
+        "resources": "[\"settings\"]",
+        "scopes": "[\"SETTINGS_READ\"]",
+        "applyPolicies": "[\"SERVICE_READ\",\"RESOURCE_READ\",\"EQUIPMENT_READ\",\"ADDRESS_READ\"]"
+      }
+    },
+    {
+      "name": "cpes_edit_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"equipments\"]",
+        "scopes": "[\"CPE_EDIT\"]",
+        "applyPolicies": "[\"EQUIPMENT_WRITE\"]"
+      }
+    },
+    {
+      "name": "ancillaryequipments_edit_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"equipments\"]",
+        "scopes": "[\"ANCILLARYEQUIPMENTS_EDIT\"]",
+        "applyPolicies": "[\"EQUIPMENT_WRITE\"]"
+      }
+    },
+    {
+      "name": "address_conf_read_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"addresses\"]",
+        "scopes": "[\"ADDRESS_CONF_READ\"]",
+        "applyPolicies": "[\"ADDRESS_READ\"]"
+      }
+    },
+    {
+      "name": "equipments_conf_create_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"equipments\"]",
+        "scopes": "[\"EQUIPMENTS_CONF_CREATE\"]",
+        "applyPolicies": "[\"EQUIPMENT_WRITE\"]"
+      }
+    },
+    {
+      "name": "cpes_read_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"equipments\"]",
+        "scopes": "[\"CPE_READ\"]",
+        "applyPolicies": "[\"EQUIPMENT_READ\"]"
+      }
+    }
+  ],
+  "scopes":[
+    {
+      "name": "ADDRESSES_CREATE"
+    },
+    {
+      "name": "ADDRESSES_DELETE"
+    },
+    {
+      "name": "ADDRESSES_EDIT"
+    },
+    {
+      "name": "ADDRESSES_READ"
+    },
+    {
+      "name": "ADDRESS_CONF_EDIT"
+    },
+    {
+      "name": "ADDRESS_CONF_READ"
+    },
+    {
+      "name": "ANCILLARYEQUIPMENTS_CREATE"
+    },
+    {
+      "name": "ANCILLARYEQUIPMENTS_DELETE"
+    },
+    {
+      "name": "ANCILLARYEQUIPMENTS_EDIT"
+    },
+    {
+      "name": "ANCILLARYEQUIPMENTS_READ"
+    },
+    {
+      "name": "CPE_CREATE"
+    },
+    {
+      "name": "CPE_DELETE"
+    },
+    {
+      "name": "CPE_EDIT"
+    },
+    {
+      "name": "CPE_READ"
+    },
+    {
+      "name": "DASHBOARD_READ"
+    },
+    {
+      "name": "EQUIPMENTS_CONF_CREATE"
+    },
+    {
+      "name": "EQUIPMENTS_CONF_DELETE"
+    },
+    {
+      "name": "EQUIPMENTS_CONF_EDIT"
+    },
+    {
+      "name": "EQUIPMENTS_CONF_READ"
+    },
+    {
+      "name": "HANDSETS_READ"
+    },
+    {
+      "name": "NUMBERS_CONF_CREATE"
+    },
+    {
+      "name": "NUMBERS_CONF_DELETE"
+    },
+    {
+      "name": "NUMBERS_CONF_READ"
+    },
+    {
+      "name": "NUMBERS_CONF_EDIT"
+    },
+    {
+      "name": "NUMBERS_CREATE"
+    },
+    {
+      "name": "NUMBERS_DELETE"
+    },
+    {
+      "name": "NUMBERS_EDIT"
+    },
+    {
+      "name": "NUMBERS_READ"
+    },
+    {
+      "name": "SERVICEACCESS_DELETE"
+    },
+    {
+      "name": "SERVICECOMPONENT_DELETE"
+    },
+    {
+      "name": "SERVICESACCESS_CREATE"
+    },
+    {
+      "name": "SERVICESACCESS_DELETE"
+    },
+    {
+      "name": "SERVICESACCESS_EDIT"
+    },
+    {
+      "name": "SERVICESACCESS_READ"
+    },
+    {
+      "name": "SERVICESCOMPONENT_CREATE"
+    },
+    {
+      "name": "SERVICESCOMPONENT_DELETE"
+    },
+    {
+      "name": "SERVICESCOMPONENT_EDIT"
+    },
+    {
+      "name": "SERVICESCOMPONENT_READ"
+    },
+    {
+      "name": "SERVICES_CONF_CREATE"
+    },
+    {
+      "name": "SERVICES_CONF_DELETE"
+    },
+    {
+      "name": "SERVICES_CONF_EDIT"
+    },
+    {
+      "name": "SERVICES_CONF_READ"
+    },
+    {
+      "name": "SETTINGS_READ"
+    },
+    {
+      "name": "SIMCARD_BATCH"
+    },
+    {
+      "name": "SIMCARD_CREATE"
+    },
+    {
+      "name": "SIMCARD_DELETE"
+    },
+    {
+      "name": "SIMCARD_EDIT"
+    },
+    {
+      "name": "SIMCARD_READ"
+    }
+  ],
+  "decisionStrategy": "UNANIMOUS"
+}

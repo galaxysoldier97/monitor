@@ -1,0 +1,96 @@
+.icon-modal-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #3f51b5;
+  padding: 12px 12px 10px 12px;
+  transition: background 0.3s ease;
+  border-radius: 50%;
+}
+
+.icon-modal-button:hover {
+  background: #f0f0f0;
+  border-radius: 50%;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Asegurarse de que esté por encima de otros elementos */
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
+  min-width: 500px;
+}
+
+.icon-modal-button-tooltip {
+  position: relative;
+  display: inline-block;
+
+.icon-modal-button-tooltiptext {
+  visibility: hidden;
+  background-color: #737373;
+  font-size: 10px;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 3;
+  top: 100%;
+  left: 50%;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.2s ease-in-out;
+  transform-origin: top center;
+  transform: translate(-50%, -10px) scaleY(0.8);
+}
+
+  &:hover .icon-modal-button-tooltiptext {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, -5px) scaleY(1);
+  }
+}
+
+.modal-content-button-container{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.model-content-button {
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  border: 2px solid #c9c9c9;
+  font-weight: bold;
+  background-color: white;
+  color: #c9c9c9;
+  cursor: pointer;
+}
+
+.model-content-button:hover {
+  border-color: #00377b;
+  color: #00377b;
+}
+.model-content {
+  text-align: center;
+}

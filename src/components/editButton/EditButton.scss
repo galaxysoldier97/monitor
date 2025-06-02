@@ -1,0 +1,43 @@
+.edit-button-container{
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #3f51b5;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+.edit-button-container:hover {
+  background: #f0f0f0;
+  border-radius: 50%;
+}
+.icon-modal-button-tooltip {
+  position: relative;
+  display: inline-block;
+  height: 100%;
+}
+
+.icon-modal-button-tooltip:hover .icon-modal-button-tooltiptext {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, -5px) scaleY(1);
+}
+.icon-modal-button-tooltiptext {
+  visibility: hidden;
+  background-color: #737373;
+  font-size: 10px;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 3;
+  top: 100%;
+  left: 50%;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.2s ease-in-out;
+  transform-origin: top center;
+  transform: translate(-50%, -10px) scaleY(0.8);
+}
