@@ -99,8 +99,11 @@ const AppComponent = ({session, router, changeLanguage, localeData}) => {
   }
 
   // display only menu for whose connectedUser has at least one of the required permissions
+  const hasNumbersDashboardRole = Auth.connectedUserHasPermission('NUMBERS_EQUIPMENTS_DASHBOARD_READ');
   const menus = System.menus.filter(menu => {
-    return !menu.hidden && menu.requiredPermissions.filter(permission => Auth.connectedUserHasPermission(permission)).length > 0;
+    const hasPermission = menu.requiredPermissions.filter(permission => Auth.connectedUserHasPermission(permission)).length > 0;
+    const excluded = menu.excludedPermissions && menu.excludedPermissions.filter(permission => Auth.connectedUserHasPermission(permission)).length > 0;
+    return !menu.hidden && hasPermission && !(hasNumbersDashboardRole && excluded);
   });
 
   if (!userMenu) {

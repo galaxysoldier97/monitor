@@ -101,6 +101,7 @@ export const System = {
       icon: <LinearScale />,
       link: '/rangeNumbers',
       requiredPermissions: [resourcesScopes.number.read],
+      excludedPermissions: ['NUMBERS_EQUIPMENTS_DASHBOARD_READ'],
       category: 'resources',
     },
     {
@@ -109,6 +110,7 @@ export const System = {
       icon: <LocationOn />,
       link: '/ipAddresses',
       requiredPermissions: [resourcesScopes.number.read],
+      excludedPermissions: ['NUMBERS_EQUIPMENTS_DASHBOARD_READ'],
       category: 'resources',
     },
     {
@@ -117,6 +119,7 @@ export const System = {
       icon: <Settings />,
       link: '/resourcesAdmin',
       requiredPermissions: [resourcesScopes.resourceConf.read],
+      excludedPermissions: ['NUMBERS_EQUIPMENTS_DASHBOARD_READ'],
       category: 'resources',
     },
     {
