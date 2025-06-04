@@ -357,6 +357,15 @@
       }
     },
     {
+      "name": "NUMBERS_EQUIPMENTS_DASHBOARD_READ",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"tecrep-monitor/NUMBERS_EQUIPMENTS_DASHBOARD_READ\",\"required\":false}]"
+      }
+    },
+    {
       "name": "numbers_conf_create",
       "type": "scope",
       "logic": "POSITIVE",
@@ -408,7 +417,7 @@
       "config": {
         "resources": "[\"resources\"]",
         "scopes": "[\"NUMBERS_READ\"]",
-        "applyPolicies": "[\"RESOURCE_READ\"]"
+        "applyPolicies": "[\"RESOURCE_READ\",\"NUMBERS_EQUIPMENTS_DASHBOARD_READ\"]"
       }
     },
     {
@@ -474,7 +483,7 @@
       "config": {
         "resources": "[\"equipments\"]",
         "scopes": "[\"SIMCARD_READ\"]",
-        "applyPolicies": "[\"EQUIPMENT_READ\"]"
+        "applyPolicies": "[\"EQUIPMENT_READ\",\"NUMBERS_EQUIPMENTS_DASHBOARD_READ\"]"
       }
     },
     {
@@ -738,7 +747,7 @@
       "config": {
         "resources": "[\"dashboard\"]",
         "scopes": "[\"DASHBOARD_READ\"]",
-        "applyPolicies": "[\"SERVICE_READ\",\"RESOURCE_READ\",\"EQUIPMENT_READ\"]"
+        "applyPolicies": "[\"SERVICE_READ\",\"RESOURCE_READ\",\"EQUIPMENT_READ\",\"NUMBERS_EQUIPMENTS_DASHBOARD_READ\"]"
       }
     },
     {
