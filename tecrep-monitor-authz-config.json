@@ -222,6 +222,30 @@
         },
         {
           "name": "NUMBERS_CONF_DELETE"
+        },
+        {
+          "name": "NUMBER_RANGE_READ"
+        },
+        {
+          "name": "NUMBER_RANGE_CREATE"
+        },
+        {
+          "name": "NUMBER_RANGE_EDIT"
+        },
+        {
+          "name": "NUMBER_RANGE_DELETE"
+        },
+        {
+          "name": "IP_ADDRESS_CREATE"
+        },
+        {
+          "name": "IP_ADDRESS_READ"
+        },
+        {
+          "name": "IP_ADDRESS_EDIT"
+        },
+        {
+          "name": "IP_ADDRESS_DELETE"
         }
       ]
     },
@@ -408,6 +432,28 @@
       "config": {
         "resources": "[\"resources\"]",
         "scopes": "[\"NUMBERS_READ\"]",
+        "applyPolicies": "[\"RESOURCE_READ\"]"
+      }
+    },
+    {
+      "name": "number_range_read_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"resources\"]",
+        "scopes": "[\"NUMBER_RANGE_READ\"]",
+        "applyPolicies": "[\"RESOURCE_READ\"]"
+      }
+    },
+    {
+      "name": "ip_address_read_permission",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"resources\"]",
+        "scopes": "[\"IP_ADDRESS_READ\"]",
         "applyPolicies": "[\"RESOURCE_READ\"]"
       }
     },

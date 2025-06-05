@@ -100,7 +100,7 @@ export const ROUTES = {
     path: '/rangeNumbers',
     exact: true,
     content: <RangeNumbersManagerPage />,
-    scopes: [resourcesScopes.number.read],
+    scopes: [resourcesScopes.rangeNumbers.read],
   },
   ipAddressesManager: {
     path: '/ipAddresses',
@@ -118,7 +118,7 @@ export const ROUTES = {
     path: routePaths.rangeNumberInfo,
     exact: true,
     content: <RangeNumberInfoPage />,
-    scopes: [resourcesScopes.number.read],
+    scopes: [resourcesScopes.rangeNumbers.read],
   },
   resourceAdmin: {
     scopes: [resourcesScopes.resourceConf.read],
