@@ -788,3 +788,12 @@ The ``StepperProvider`` and ``useStepper`` hook provide the following functions 
 - ``previousPage``: Function to navigate to the previous page.
 
 These functions simplify the management of your stepper component, providing a consistent interface for common stepper operations. By using the ``StepperContext`` and ``useStepper`` hook, you can enhance the maintainability and reusability of your stepper components in your application.
+## Keycloak Permissions Setup
+To control access to each menu item you can define dedicated permissions and map them to Keycloak roles. Below is an example of four permissions:
+
+- `NUMBER_READ` – access to the **Numbers** section
+- `NUMBER_RANGE_READ` – access to the **Range Numbers** section
+- `IP_ADDRESS_READ` – access to the **IP Addresses** section
+- `RESOURCE_CONF_READ` – access to the **Resources Admin** section
+
+In Keycloak create one role per permission (for instance `NUMBERS_VIEWER`, `RANGE_VIEWER`, and so on) and assign the corresponding permission scope to the role. A user that has all four roles will be able to navigate to all pages.

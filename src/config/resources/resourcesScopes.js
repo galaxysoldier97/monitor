@@ -8,11 +8,17 @@ export const resourcesScopes = {
     edit: 'NUMBERS_EDIT',
     delete: 'NUMBERS_DELETE',
   },
+  rangeNumbers: {
+    read: 'NUMBER_RANGE_READ',
+    create: 'NUMBER_RANGE_CREATE',
+    update: 'NUMBER_RANGE_EDIT',
+    delete: 'NUMBER_RANGE_DELETE',
+  },
   ipAddresses: {
-    create: 'NUMBERS_CREATE',
-    read: 'NUMBERS_READ',
-    edit: 'NUMBERS_EDIT',
-    delete: 'NUMBERS_DELETE',
+    create: 'IP_ADDRESS_CREATE',
+    read: 'IP_ADDRESS_READ',
+    edit: 'IP_ADDRESS_EDIT',
+    delete: 'IP_ADDRESS_DELETE',
   },
   resourceConf: {
     read: 'NUMBERS_CONF_READ',

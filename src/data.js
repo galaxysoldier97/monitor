@@ -100,7 +100,7 @@ export const System = {
       text: t('menu.rangeNumbers'),
       icon: <LinearScale />,
       link: '/rangeNumbers',
-      requiredPermissions: [resourcesScopes.number.read],
+      requiredPermissions: [resourcesScopes.rangeNumbers.read],
       category: 'resources',
     },
     {
@@ -108,7 +108,7 @@ export const System = {
       text: t('menu.ipAddresses'),
       icon: <LocationOn />,
       link: '/ipAddresses',
-      requiredPermissions: [resourcesScopes.number.read],
+      requiredPermissions: [resourcesScopes.ipAddresses.read],
       category: 'resources',
     },
     {
