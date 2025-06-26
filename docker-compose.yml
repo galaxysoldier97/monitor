@@ -2,23 +2,21 @@ version: "2"
 
 services:
   tecrep-monitor-local:
-    build:
-      context: .
+    image: git.tigopa.local:5050/tigo/tecrep/monitor:toc
     ports:
-      - "8085:9090"
-      - "9229:9229"  # Exponemos el puerto para el debugger
+      - "8083:8080"
     container_name: tecrep-monitor-local
     environment:
-      _API_EQUIPMENTS: http://localhost:10025
-      _API_RESOURCES: http://localhost:10033
-      _API_SERVICES: http://localhost:10007
-      _API_ADDRESSES: http://localhost:10026
-      KEYCLOAK_AUTH_PATH: http://localhost:8080
-      KEYCLOAK_AUTH_REALM: monaco-telecom-dev
+      _API_EQUIPMENTS: https://tecrep-monitor-dev.tigo.com.pa/equipments
+      _API_RESOURCES: https://tecrep-monitor-dev.tigo.com.pa/resources
+      _API_SERVICES: https://tecrep-monitor-dev.tigo.com.pa/services
+      _API_ADDRESSES: 
+      KEYCLOAK_AUTH_PATH: https://keycloack-dev.tigo.com.pa
+      KEYCLOAK_AUTH_REALM: tigo-panama
       KEYCLOAK_AUTH_CLIENT_PERMISSIONS: tecrep-monitor
       _UNM: 
       COMPANY: MT
       NODE_ENV: development  # Entorno de desarrollo
-      NODE_OPTIONS: --use-openssl-ca --openssl-legacy-provider --inspect=0.0.0.0:9229
+      NODE_OPTIONS: --use-openssl-ca --openssl-legacy-provider --inspect=0.0.0.0:8080
     # Sobrescribimos el comando para usar el debugger
-    command: sh -c "npm run generate-envs-prod && node --inspect=0.0.0.0:9229 server.js"
+

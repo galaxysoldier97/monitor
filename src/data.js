@@ -32,7 +32,8 @@ export const System = {
       text: t('menu.dashboard'),
       icon: <Assessment />,
       link: '/dashboard',
-      requiredPermissions: ['DASHBOARD_READ'],
+      requiredPermissions: ['DASHBOARD_READ','READ_ONLY_NUMBERS'],
+      excludedRoles: ['ROLE_ADMIN_JOB','ROLE_ADMIN_BLOCK'],
     },
     {
       text: 'User Management',
@@ -61,6 +62,7 @@ export const System = {
       icon: <SimCard />,
       link: '/simCard',
       requiredPermissions: [resourcesScopes.simCard.read],
+      excludedRoles: ['ROLE_READ_EQUIPMENT','ROLE_ADMIN_EQUIPMENT'],
       category: 'equipments',
     },
     {
@@ -69,6 +71,7 @@ export const System = {
       icon: <ViewCompact />,
       link: '/cpes',
       requiredPermissions: [resourcesScopes.cpe.read],
+      excludedRoles: ['ROLE_READ_EQUIPMENT', 'ROLE_ADMIN_EQUIPMENT'],
       category: 'equipments',
     },
     {
@@ -85,6 +88,7 @@ export const System = {
       icon: <Settings />,
       link: '/equipmentsAdmin',
       requiredPermissions: [resourcesScopes.equipmentsAdmin.read],
+      excludedRoles: ['ROLE_READ_EQUIPMENT'],
       category: 'equipments',
     },
     {
@@ -92,7 +96,8 @@ export const System = {
       text: t('menu.numbers'),
       icon: <Dialpad />,
       link: '/numbers',
-      requiredPermissions: [resourcesScopes.number.read],
+      requiredPermissions: [resourcesScopes.number.read,'READ_ONLY_NUMBERS'],
+      excludedRoles: ['ROLE_ADMIN_JOB'],
       category: 'resources',
     },
     {
@@ -100,7 +105,8 @@ export const System = {
       text: t('menu.rangeNumbers'),
       icon: <LinearScale />,
       link: '/rangeNumbers',
-      requiredPermissions: [resourcesScopes.number.read],
+      requiredPermissions: [resourcesScopes.number.read,'READ_ONLY_NUMBERS'],
+      excludedRoles: ['ROLE_ADMIN_JOB','ROLE_ADMIN_BLOCK','ROLE_READ_RESOURCE','ROLE_MOD_RESOURCE'],
       category: 'resources',
     },
     {
@@ -108,8 +114,10 @@ export const System = {
       text: t('menu.ipAddresses'),
       icon: <LocationOn />,
       link: '/ipAddresses',
-      requiredPermissions: [resourcesScopes.number.read],
+    requiredPermissions: [resourcesScopes.number.read,'READ_ONLY_NUMBERS'],
+      excludedRoles: ['ROLE_ADMIN_JOB','ROLE_ADMIN_BLOCK','ROLE_READ_RESOURCE','ROLE_MOD_RESOURCE'],
       category: 'resources',
+
     },
     {
       id: 'resourcesAdmin',
@@ -117,6 +125,7 @@ export const System = {
       icon: <Settings />,
       link: '/resourcesAdmin',
       requiredPermissions: [resourcesScopes.resourceConf.read],
+      excludedRoles: ['ROLE_READ_RESOURCE', 'ROLE_MOD_RESOURCE'],
       category: 'resources',
     },
     {
@@ -133,6 +142,7 @@ export const System = {
       icon: <SignalCellularAlt />,
       link: '/servicesComponent',
       requiredPermissions: [resourcesScopes.serviceComponent.read],
+      excludedRoles: ['ROLE_READ_SERVICE'],
       category: 'services',
     },
     {
@@ -141,6 +151,7 @@ export const System = {
       icon: <Settings />,
       link: Actions.SERVICE_ADMIN.getRoutePath(),
       requiredPermissions: [resourcesScopes.servicesAdmin.read],
+      excludedRoles: ['ROLE_READ_SERVICE'],
       category: 'services',
     },
     {
@@ -149,6 +160,7 @@ export const System = {
       icon: <Settings />,
       link: '/settings',
       requiredPermissions: [resourcesScopes.settings.read],
+      excludedRoles: ['ROLE_ADMIN_JOB', 'ROLE_ADMIN_BLOCK'],
     },
     {
       id: 'postalAdresses',

@@ -18,7 +18,7 @@ import { TecrepUserMenuPreferencesService } from '../services/TecrepUserMenuPref
 import { TplLoading } from 'mt-react-library/containers/templates';
 import { WelcomePage } from './WelcomePage';
 import '../config/api';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 
 
@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const AppComponent = ({session, router, changeLanguage, localeData}) => {
+const AppComponent = ({ session, router, changeLanguage, localeData }) => {
   const classes = useStyles(ThemeDefault);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [userMenu, setUserMenu] = useState(undefined);
@@ -68,20 +68,20 @@ const AppComponent = ({session, router, changeLanguage, localeData}) => {
 
   const fetchUserMenu = () => {
     TecrepUserMenuPreferencesService.fetch(Auth.getConnectedUser())
-        .then(result => {
-          const language = result.language in localeData ? result.language : 'EN';
-          changeLanguage(language);
-          i18n.changeLanguage(language);
-          setUserMenu({...result, language});
-        })
-        .catch();
+      .then(result => {
+        const language = result.language in localeData ? result.language : 'EN';
+        changeLanguage(language);
+        i18n.changeLanguage(language);
+        setUserMenu({ ...result, language });
+      })
+      .catch();
   };
 
   useEffect(() => {
     fetchUserMenu();
   }, []);
   useEffect(() => {
-    if(session && session.language){
+    if (session && session.language) {
       changeLanguage(session.language);
     }
   }, [session?.language]);
@@ -100,7 +100,10 @@ const AppComponent = ({session, router, changeLanguage, localeData}) => {
 
   // display only menu for whose connectedUser has at least one of the required permissions
   const menus = System.menus.filter(menu => {
-    return !menu.hidden && menu.requiredPermissions.filter(permission => Auth.connectedUserHasPermission(permission)).length > 0;
+    // return !menu.hidden && menu.requiredPermissions.filter(permission => Auth.connectedUserHasPermission(permission)).length > 0;
+    const hasPermission = menu.requiredPermissions.filter(permission => Auth.connectedUserHasPermission(permission)).length > 0;
+    const excluded = menu.excludedRoles && menu.excludedRoles.some(role => Auth.connectedUserHasRole(role));
+    return !menu.hidden && hasPermission && !excluded;
   });
 
   if (!userMenu) {
@@ -108,32 +111,32 @@ const AppComponent = ({session, router, changeLanguage, localeData}) => {
   }
 
   return (
-      <div className={classes.root}>
-        <CssBaseline />
-        <Header drawerOpen={drawerOpen} handleDrawerOpen={handleDrawerOpen} handleDrawerClose={handleDrawerClose} />
-        <LeftDrawer drawerOpen={drawerOpen} menus={menus} userMenu={userMenu} refreshUserMenu={fetchUserMenu} />
-        <Suspense fallback={<TplLoading />}>
-          <main className={classNames(router.location.pathname !== '/map' ? classes.content : classes.contentMap, {[classes.contentShift]: drawerOpen})}>
-            <div className={classes.drawerHeader} />
-            <div className={router.location.pathname !== '/map' ? classes.container : classes.containerMap}>
-              <Route exact path="/" render={() => Auth.connectedUserHasPermission('DASHBOARD_READ') ?
-                  <Redirect to={Actions.DASHBOARD.getRoutePath()} /> : <WelcomePage />} />
-              {Auth.connectedUserHasPermission('DASHBOARD_READ') &&
-                  <Route exact path={Actions.DASHBOARD.getRoutePath()} render={() => <Dashboard />} />
-              }
-              {Object.values(ROUTES)
-                  .filter(route => !route.scopes || Auth.connectedUserHasPermission(...route.scopes))
-                  .map(route => (
-                      <Route
-                          key={route.path}
-                          exact={route.exact || false}
-                          path={route.path}
-                          render={() => route.languageAware ? route.content(userMenu.language) : route.content} />
-                  ))}
-            </div>
-          </main>
-        </Suspense>
-      </div>
+    <div className={classes.root}>
+      <CssBaseline />
+      <Header drawerOpen={drawerOpen} handleDrawerOpen={handleDrawerOpen} handleDrawerClose={handleDrawerClose} />
+      <LeftDrawer drawerOpen={drawerOpen} menus={menus} userMenu={userMenu} refreshUserMenu={fetchUserMenu} />
+      <Suspense fallback={<TplLoading />}>
+        <main className={classNames(router.location.pathname !== '/map' ? classes.content : classes.contentMap, { [classes.contentShift]: drawerOpen })}>
+          <div className={classes.drawerHeader} />
+          <div className={router.location.pathname !== '/map' ? classes.container : classes.containerMap}>
+            <Route exact path="/" render={() => Auth.connectedUserHasPermission('DASHBOARD_READ') ?
+              <Redirect to={Actions.DASHBOARD.getRoutePath()} /> : <WelcomePage />} />
+            {Auth.connectedUserHasPermission('DASHBOARD_READ') &&
+              <Route exact path={Actions.DASHBOARD.getRoutePath()} render={() => <Dashboard />} />
+            }
+            {Object.values(ROUTES)
+              .filter(route => !route.scopes || Auth.connectedUserHasPermission(...route.scopes))
+              .map(route => (
+                <Route
+                  key={route.path}
+                  exact={route.exact || false}
+                  path={route.path}
+                  render={() => route.languageAware ? route.content(userMenu.language) : route.content} />
+              ))}
+          </div>
+        </main>
+      </Suspense>
+    </div>
   );
 };
 

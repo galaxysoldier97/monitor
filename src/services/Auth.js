@@ -86,6 +86,15 @@ export class Auth {
     return false;
   }
 
+    /**
+   * Verify if connected user has the given role
+   * @param {string} role
+   * @returns {boolean}
+   */
+  static connectedUserHasRole(role) {
+    return resolveImplementation().connectedUserHasRole(role);
+  }
+
   /**
    * Return the redirection component
    * @param {string} currentLocation
