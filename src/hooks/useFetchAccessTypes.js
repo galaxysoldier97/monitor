@@ -12,6 +12,7 @@ import { isConfigSet } from '../helpers/commonHelper';
 import {AssociatedProvisioningTagFields} from "../config/service/provisioningTag/AssociatedProvisioningTagFields";
 import {ProviderFields} from "../config/equipment/ProviderFields";
 import {EquipmentModelFields} from "../config/equipment/EquipmentModelFields";
+import {HomologacionSapFields} from "../config/equipment/HomologacionSapFields";
 const allValue = {key: '', value: t('all')};
 
 export const useFetchAccessTypes = ({type}) => {
@@ -38,6 +39,7 @@ export const useFetchAccessTypes = ({type}) => {
         ancillaryEquipmentFields.find(el => el.id === 'accessType').values = types ;
         ProviderFields.find(el => el.id === 'accessType').values = types;
         EquipmentModelFields.find(el => el.id === 'accessType').values = types;
+        HomologacionSapFields.find(el => el.id === 'accessType').values = types;
         simCardFields.find(el => el.id === 'accessType').values = [allValue, ...types];
       } else if (type === 'srv') {
         serviceAccessConfig.values = [allValue, ...types];
