@@ -2,6 +2,8 @@ import {isEmpty} from 'mt-react-library/functions';
 
 export const getDisplayedDate = date => date ? new Date(date).toLocaleDateString('fr-FR') : '';
 
+export const getDisplayedDateTime = date => date ? new Date(date).toLocaleString('fr-FR') : '';
+
 export const printObject = (obj) => {
   let printed = '';
   for (const key in obj) {

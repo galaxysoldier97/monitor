@@ -9,6 +9,7 @@ import InventoryPoolPage from "./InventoryPoolPage";
 import SimcardGenerationPage from "./SimcardGenerationPage";
 import ConfigurationFilePage from "./ConfigurationFilePage";
 import EquipmentJobPage from "./EquipmentJobPage";
+import EquipmentBulkUploadPage from "./EquipmentBulkUploadPage";
 
 export default function EquipmentsAdminManagerPage() {
 
@@ -20,7 +21,8 @@ export default function EquipmentsAdminManagerPage() {
         [EquipmentsAdminTabs.INVENTORY_POOL]: InventoryPoolPage,
         [EquipmentsAdminTabs.SIMCARD_GENERATION_CONFIGURATION]: SimcardGenerationPage,
         [EquipmentsAdminTabs.FILE_CONFIGURATION]: ConfigurationFilePage,
-        [EquipmentsAdminTabs.JOB_EQUIPMENT]: EquipmentJobPage
+        [EquipmentsAdminTabs.JOB_EQUIPMENT]: EquipmentJobPage,
+        [EquipmentsAdminTabs.BULK_UPLOAD]: EquipmentBulkUploadPage
     };
 
     return (

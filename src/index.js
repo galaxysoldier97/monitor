@@ -17,6 +17,38 @@ import FR from "./i18n/fr.json";
 import './i18n/i18n';
 import './favicon.ico';
 
+// Interceptar XMLHttpRequest (para capturar el id_token del login)
+(function () {
+    const originalOpen = XMLHttpRequest.prototype.open;
+    const originalSend = XMLHttpRequest.prototype.send;
+
+    XMLHttpRequest.prototype.open = function (method, url, ...rest) {
+        this._url = url; // Guarda URL de la petición
+        return originalOpen.call(this, method, url, ...rest);
+    };
+
+    XMLHttpRequest.prototype.send = function (...args) {
+        const originalOnLoad = this.onload;
+
+        this.onload = function () {
+            if (this._url && this._url.includes('/protocol/openid-connect/token')) {
+                try {
+                    const response = JSON.parse(this.responseText);
+                    if (response.id_token) {
+                        localStorage.setItem('id_token', response.id_token);
+                        //console.log('[Keycloak-XHR] id_token guardado desde interceptor.');
+                    }
+                } catch (e) {
+                    console.warn('⚠️ No se pudo parsear respuesta de login:', e);
+                }
+            }
+
+            if (originalOnLoad) originalOnLoad.call(this);
+        };
+
+        return originalSend.call(this, ...args);
+    };
+})();
 
 const localeData = {EN, FR};
 

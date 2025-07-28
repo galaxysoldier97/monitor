@@ -41,8 +41,26 @@ class KeycloakAuth {
    * Deauthenticate a user.
    *
    */
-  static deauthenticateUser() {
+  /* static deauthenticateUser() {
     userManagement.logout();
+  } */
+
+  //Funcional
+  static deauthenticateUser() {
+    const idToken = localStorage.getItem('id_token');
+    if (!idToken) {
+      console.warn('⚠️ No se encontró el id_token en localStorage. Cancelando logout.');
+      return;
+    }
+
+    const logoutUrl = `${authenticationOptions.url}/realms/${authenticationOptions.realm}/protocol/openid-connect/logout?` +
+      `id_token_hint=${idToken}&` +
+      `post_logout_redirect_uri=${encodeURIComponent(window.location.origin)}`;
+
+    localStorage.removeItem('id_token');
+    store.dispatch({ type: 'LOGOUT' });
+
+    window.location.href = logoutUrl;
   }
 
   /**
@@ -81,6 +99,29 @@ class KeycloakAuth {
     return session.payload.authorizations[permission];
   }
 
+   /**
+   * Verify if connected user has a given role
+   * @param {string} role
+   * @returns {boolean}
+   */
+  static connectedUserHasRole(role) {
+    const token = userManagement.getTokenParsed();
+    if (!token) {
+      return false;
+    }
+    if (token.realm_access && Array.isArray(token.realm_access.roles) && token.realm_access.roles.includes(role)) {
+      return true;
+    }
+    if (token.resource_access) {
+      for (const client of Object.values(token.resource_access)) {
+        if (client.roles && client.roles.includes(role)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   /**
    * Assert if this authentication method is available
    * @return {boolean}
@@ -95,7 +136,7 @@ class KeycloakAuth {
    * @returns {Array<string>}
    */
   static redirectToLogin(currentLocation) {
-    store.dispatch({type: Actions.LOGIN.REQUEST, payload: {redirect: currentLocation}});
+    store.dispatch({ type: Actions.LOGIN.REQUEST, payload: { redirect: currentLocation } });
   }
 
   /**
@@ -111,7 +152,8 @@ class KeycloakAuth {
     let isUnauthorized = errorResponse.status === 401 && errorResponse.config && !errorResponse.config.__isRetryRequest;
     let isFailedPolicyDecision = errorResponse.data && errorResponse.data.message === 'Failed to enforce policy decisions.';
     if (errorResponse.status === 403 && !errorResponse.data) {
-      userManagement.logoutInvalidSession();
+      //userManagement.logoutInvalidSession();
+      KeycloakAuth.deauthenticateUser();
     }
     return isUnauthorized || isFailedPolicyDecision;
   }

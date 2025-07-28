@@ -6,5 +6,6 @@ export const EquipmentsAdminTabs = Object.freeze({
   FILE_CONFIGURATION: 'fileConfiguration',
   SIMCARD_GENERATION_CONFIGURATION: 'simCardGenerationConfiguration',
   EQUIPMENT_MODEL: 'equipmentModel',
-  PLMN: 'plmn'
+  PLMN: 'plmn',
+  BULK_UPLOAD: 'bulk_upload'
 });

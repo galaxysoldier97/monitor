@@ -82,6 +82,17 @@ export default class LoginFormAuth {
     return connectedUserPermissions.indexOf(permission) > -1;
   }
 
+   /**
+   * Verify if connected user has a given role
+   * @param {string} role
+   * @returns {boolean}
+   */
+  static connectedUserHasRole(role) {
+    let connectedUserRoles = (localStorage.getItem('connectedUserRole') || '').split(',');
+    return connectedUserRoles.indexOf(role) > -1;
+  }
+
+
 
   /**
    * Assert if this authentication method is available

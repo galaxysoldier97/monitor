@@ -1,4 +1,4 @@
-import { getAddressDescription, getDisplayedDate, isConfigSet, printObject, isObject } from './commonHelper';
+import { getAddressDescription, getDisplayedDate, getDisplayedDateTime, isConfigSet, printObject, isObject } from './commonHelper';
 import { address1 } from '../../mocks/adress.mock';
 
 describe('getDisplayedDate', () => {
@@ -8,6 +8,17 @@ describe('getDisplayedDate', () => {
   );
   test('getDisplayedDate should display correct date format', () => {
     expect(getDisplayedDate(1)).toBe('01/01/1970');
+  });
+});
+
+describe('getDisplayedDateTime', () => {
+  test('getDisplayedDateTime with no argument should display empty string', () => {
+      expect(getDisplayedDateTime()).toBe('');
+    },
+  );
+  test('getDisplayedDateTime should display correct date time format', () => {
+    const result = getDisplayedDateTime(1);
+    expect(result).toMatch(/01\/01\/1970\s+00:00:01/);
   });
 });
 

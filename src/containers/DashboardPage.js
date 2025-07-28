@@ -21,9 +21,9 @@ const DashboardPage = () => {
   const [resourcesTabIndex, equipmentsTabIndex, servicesTabIndex] = [...Array(3)].map((_, i) => i);
 
   const resolveSelectedIndex = () => {
-    if (permissionResources) {
-      return resourcesTabIndex;
-    }
+    if (permissionResources) return resourcesTabIndex;
+    if (permissionEquipments) return equipmentsTabIndex;
+    if (permissionServices) return servicesTabIndex;
     return undefined;
   };
 

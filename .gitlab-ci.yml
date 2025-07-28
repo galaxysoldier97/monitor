@@ -1,27 +1,29 @@
-include:
-  - project: 'mtmc/projects/it-factory/piplib'
-    ref: develop
-    file: '/pipelines/npm-deploy/epicCY-ci-galaxion-epic.gitlab-ci.yml'
-  - project: 'mtmc/projects/it-factory/piplib'
-    ref: develop
-    file: '/pipelines/npm-deploy/mtMC-ci-itinternal.gitlab-ci.yml'
-  - project: 'mtmc/projects/it-factory/piplib'
-    ref: develop
-    file: '/pipelines/npm.gitlab-ci.yml'
+stages:
+  - deploy
 
-default:
-  image: jfrog-artifactory.steelhome.internal/docker/node:18.12.0
-
-sonarqube-nodejs:
-  allow_failure: true
-
-.kaniko:buildpush:
+deploy_monitor_dev:
+  stage: deploy
+  tags:
+    - tecrep-app-dev-16  # ← Runner específico en el servidor
   variables:
-    KUBERNETES_MEMORY_REQUEST: 8Gi
-    KUBERNETES_MEMORY_LIMIT: 8Gi
+    REGISTRY: git.tigopa.local:5050
+    IMAGE: tigo/tecrep/monitor
+    IMAGE_TAG: "toc"
+    COMPOSE_FILE: docker-compose.yml
+    DEPLOY_DIR: /u01/monitor
 
-variables:
-  BUILD_EIR: "true"
+  rules:
+    # Ejecutar solo si es push o merge hacia la rama toc-sat-dev
+    - if: '$CI_COMMIT_BRANCH == "toc-sat-dev"'
+      when: on_success
+    - when: never
 
-test:
-  allow_failure: true
+  before_script:
+    - export PATH="$HOME/.local/bin:$PATH"
+    - podman login -u gitlab-ci-token -p $CI_JOB_TOKEN $REGISTRY
+
+  script:
+    - cd $DEPLOY_DIR
+    - echo "▶️ Desplegando $REGISTRY/$IMAGE:$IMAGE_TAG en DEV"
+    - sudo podman-compose -f $COMPOSE_FILE pull tecrep-monitor-local
+    - sudo podman-compose -f $COMPOSE_FILE up -d --force-recreate tecrep-monitor-local
