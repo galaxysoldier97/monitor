@@ -21,6 +21,7 @@ import {StockManufacturerEndpoint} from "../services/Stock/StockManufacturerServ
 import {PlmnEndpoint} from "../services/equipments/equipmentsEndpoint/PlmnService";
 import {ProviderEndpoint} from "../services/equipments/equipmentsEndpoint/ProviderService";
 import {EquipmentModelEndpoint} from "../services/equipments/equipmentsEndpoint/EquipmentModelService";
+import {HomologacionSapEndpoint} from "../services/equipments/equipmentsEndpoint/HomologacionSapService";
 import {WarehouseEndpoint} from "../services/equipments/equipmentsEndpoint/WarehouseService";
 import {InventoryPoolEndpoint} from "../services/equipments/equipmentsEndpoint/InventoryPoolService";
 import {SimcardConfigurationEndpoint} from "../services/equipments/equipmentsEndpoint/SimcardConfigurationService";
@@ -75,6 +76,13 @@ const equipmentActions = {
     add: (item) => EquipmentModelEndpoint.add(item),
     delete: (item) => EquipmentModelEndpoint.deleteById(item.id),
     update: ({ updatedItem }) => EquipmentModelEndpoint.update(updatedItem),
+  },
+
+  [EquipmentAdminCategories.HOMOLOGACION_SAP]: {
+    get: (filters) => HomologacionSapEndpoint.getAll(filters),
+    add: (item) => HomologacionSapEndpoint.add(item),
+    delete: (item) => HomologacionSapEndpoint.deleteById(item.id),
+    update: ({ updatedItem }) => HomologacionSapEndpoint.update(updatedItem),
   },
 
   [EquipmentAdminCategories.JOB_EQUIPMENT]: {

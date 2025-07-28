@@ -1,0 +1,20 @@
+import React from 'react';
+import DefaultTable from '../../../components/defaultTable/DefaultTable';
+import {EquipmentAdminCategories} from '../../../config/equipment/EquipmentImportableProperties';
+import {HomologacionSapFields} from '../../../config/equipment/HomologacionSapFields';
+import AddHomologacionSapForm from './AddHomologacionSapForm';
+import {useFetchAccessTypes} from '../../../hooks/useFetchAccessTypes';
+
+export default function HomologacionSapPage(){
+  useFetchAccessTypes({type: 'eqm'});
+  return (
+    <DefaultTable
+      columnHeader={HomologacionSapFields}
+      entity={EquipmentAdminCategories.HOMOLOGACION_SAP}
+      isFilterable={false}
+      showEditButton
+      showDeleteButton={false}
+      AddActionButton={AddHomologacionSapForm}
+    />
+  );
+}

@@ -10,6 +10,7 @@ import SimcardGenerationPage from "./SimcardGenerationPage";
 import ConfigurationFilePage from "./ConfigurationFilePage";
 import EquipmentJobPage from "./EquipmentJobPage";
 import EquipmentBulkUploadPage from "./EquipmentBulkUploadPage";
+import HomologacionSapPage from "./HomologacionSapPage";
 
 export default function EquipmentsAdminManagerPage() {
 
@@ -22,7 +23,8 @@ export default function EquipmentsAdminManagerPage() {
         [EquipmentsAdminTabs.SIMCARD_GENERATION_CONFIGURATION]: SimcardGenerationPage,
         [EquipmentsAdminTabs.FILE_CONFIGURATION]: ConfigurationFilePage,
         [EquipmentsAdminTabs.JOB_EQUIPMENT]: EquipmentJobPage,
-        [EquipmentsAdminTabs.BULK_UPLOAD]: EquipmentBulkUploadPage
+        [EquipmentsAdminTabs.BULK_UPLOAD]: EquipmentBulkUploadPage,
+        [EquipmentsAdminTabs.HOMOLOGACION_SAP]: HomologacionSapPage
     };
 
     return (

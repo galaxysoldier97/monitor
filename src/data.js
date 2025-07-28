@@ -339,6 +339,15 @@ export const Backend = {
     equipmentModel: {
       url: Config.tecrepApiEquipmentsUrl + '/api/v2/private/auth/equipmentModels',
     },
+    equipmentModelsAccessTypes: {
+      url: Config.tecrepApiEquipmentsUrl + '/api/v2/private/auth/equipmentModels/access-types',
+    },
+    equipmentModelsNames: {
+      url: Config.tecrepApiEquipmentsUrl + '/api/v2/private/auth/equipmentModels/names',
+    },
+    homologacionMaterialSap: {
+      url: Config.tecrepApiEquipmentsUrl + '/api/v2/private/auth/homologacionMaterialSap',
+    },
     jobConfiguration: {
       url: `${Config.tecrepApiEquipmentsUrl}/api/v1/private/auth/job/configuration`
     },
