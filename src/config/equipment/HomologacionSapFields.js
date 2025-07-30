@@ -1,7 +1,9 @@
 export const HomologacionSapFields = [
-  {id: 'id', label: 'id', hidden: true},
-  {id: 'accessType', label: 'accessType', addable: true, editable: true, hidden: true},
-  {id: 'equipment_model_id', label: 'modelName', addable: true, editable: true},
-  {id: 'id_material_sap', label: 'homologacionSap.materialSap', addable: true, editable: true},
-  {id: 'name_sap', label: 'description', addable: true, editable: true},
+  {id: 'id', label: 'ID', hidden: true},
+  {id: 'accessType', label: 'TIPO DE RECURSO', addable: true, editable: false},
+  {id: 'equipmentModelName', label: 'NOMBRE DE MODELO DE RECURSO', addable: true, editable: false},
+  {id: 'equipmentModelId', label: 'ID DE MODELO DE RECURSO', addable: true, editable: false},
+  {id: 'idMaterialSap', label: 'MATERIAL SAP', addable: true, editable: true},
+  {id: 'nameSap', label: 'NOMBRE DE MATERIAL SAP', addable: true, editable: true},
+  {id: 'status', label: 'ESTADO', addable: true, editable: true},
 ];

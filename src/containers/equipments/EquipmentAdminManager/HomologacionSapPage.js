@@ -5,6 +5,7 @@ import {HomologacionSapFields} from '../../../config/equipment/HomologacionSapFi
 import AddHomologacionSapForm from './AddHomologacionSapForm';
 import {useFetchAccessTypes} from '../../../hooks/useFetchAccessTypes';
 
+
 export default function HomologacionSapPage(){
   useFetchAccessTypes({type: 'eqm'});
   return (

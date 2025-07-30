@@ -34,12 +34,10 @@ export async function add(item) {
 
 export async function update(item) {
   const mappedItem = APIformat(item);
-  const {id} = mappedItem;
   try {
-    const response = await axios.patch(`${Backend.equipments.homologacionMaterialSap.url}/${id}`, mappedItem, Auth.authorize());
-    return response?.data?.content;
+    return await axios.patch(Backend.equipments.homologacionMaterialSap.url, mappedItem, Auth.authorize());
   } catch (error) {
-    console.error(`Error updating homologacion material sap: ${id}`, error);
+    console.error('Error updating homologacion material sap:', error);
     throw error;
   }
 }
