@@ -4,11 +4,9 @@ import {EquipmentAdminCategories} from '../../../config/equipment/EquipmentImpor
 import {HomologacionSapFields} from '../../../config/equipment/HomologacionSapFields';
 import AddHomologacionSapForm from './AddHomologacionSapForm';
 import EditHomologacionSapForm from './EditHomologacionSapForm';
-import {useFetchAccessTypes} from '../../../hooks/useFetchAccessTypes';
 
 
 export default function HomologacionSapPage(){
-  useFetchAccessTypes({type: 'eqm'});
   return (
     <DefaultTable
       columnHeader={HomologacionSapFields}
@@ -17,7 +15,7 @@ export default function HomologacionSapPage(){
       showEditButton
       showDeleteButton={false}
       AddActionButton={AddHomologacionSapForm}
-      EditActionComponent={EditHomologacionSapForm}
+      EditActionButtons={EditHomologacionSapForm}
     />
   );
 }

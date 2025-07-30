@@ -128,7 +128,7 @@ export default function DefaultTable({columnHeader, entity, isFilterable = true,
         )}
         {showEditButton &&
           <div onClick={() => setAction('Edit')}>
-            {EditActionComponent ? (
+           {EditActionComponent ? (
               <EditActionComponent
                 selectedItem={selectedItem}
                 onSubmit={updateItem}
