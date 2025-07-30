@@ -4,15 +4,14 @@ import {Dialog, DialogTitle, DialogContent, DialogActions, Switch, FormControlLa
 import CustomSelect from '../../../components/customSelect/CustomSelect';
 import TypeField from '../../../components/typeField/TypeField';
 import IconLabelButton from '../../../components/iconLabelButton/IconLabelButton';
-import ContainedButton from '../../../components/containedButton/ContainedButton';
 import axios from 'axios';
 import {Backend} from '../../../data';
 import Auth from '../../../services/Auth';
 import {HomologacionSapFields} from '../../../config/equipment/HomologacionSapFields';
-import {Add, Cancel} from '@material-ui/icons';
+import {Edit, Cancel} from '@material-ui/icons';
 import {useTranslation} from 'react-i18next';
 
-export default function AddHomologacionSapForm({predefinedValues = {}, onSubmit}) {
+export default function EditHomologacionSapForm({selectedItem, onSubmit}) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [formValues, setFormValues] = useState({});
@@ -29,20 +28,25 @@ export default function AddHomologacionSapForm({predefinedValues = {}, onSubmit}
   }, []);
 
   useEffect(() => {
-    if(formValues.accessType){
-      axios.get(`${Backend.equipments.equipmentModelsNames.url}?category=ANCILLARY&accessType=${formValues.accessType}`, Auth.authorize())
+    const access = formValues.accessType || selectedItem.accessType;
+    if(access){
+      axios.get(`${Backend.equipments.equipmentModelsNames.url}?category=ANCILLARY&accessType=${access}`, Auth.authorize())
         .then(res => {
           const opts = res.data.map(v => ({id: v.id, key: v.name, value: v.name}));
           setModelOptions(opts);
         });
     }
-  }, [formValues.accessType]);
+  }, [formValues.accessType, selectedItem.accessType]);
 
-  const handleInputChange = (event) => {
-    const { id, value } = event.target;
+  useEffect(() => {
+    setStatusChecked(selectedItem.status !== 'Deshabilitado');
+  }, [selectedItem]);
+
+  const handleInputChange = event => {
+    const {id, value} = event.target;
     if (id === 'equipmentModelId') {
       const option = modelOptions.find(o => o.value === value);
-      setFormValues(prev => ({...prev, [id]: option ? option.id : value}));
+      setFormValues(prev => ({...prev, [id]: option ? option.id : value, equipmentModelName: value}));
     } else {
       setFormValues(prev => ({...prev, [id]: value}));
     }
@@ -52,9 +56,9 @@ export default function AddHomologacionSapForm({predefinedValues = {}, onSubmit}
   const handleClose = () => { setOpen(false); setFormValues({}); };
 
   const handleSubmit = () => {
-    const { accessType, ...dataToSubmit } = { ...predefinedValues, ...formValues };
     const status = statusChecked ? 'Habilitado' : 'Deshabilitado';
-    onSubmit({...dataToSubmit, status});
+    const dataToSubmit = {...selectedItem, ...formValues, status};
+    onSubmit(selectedItem, dataToSubmit);
     handleClose();
   };
 
@@ -64,16 +68,16 @@ export default function AddHomologacionSapForm({predefinedValues = {}, onSubmit}
 
   return (
     <div>
-      <div onClick={handleClickOpen}>
-        <ContainedButton />
+      <div onClick={handleClickOpen} className="edit-button-container">
+        <Edit />
       </div>
       <Dialog className="form-dialog-container" open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle className="form-dialog-title" id="form-dialog-title">{t('add')}</DialogTitle>
+        <DialogTitle className="form-dialog-title" id="form-dialog-title">{t('edit')}</DialogTitle>
         <DialogContent>
-          <CustomSelect field={accessField} onChange={handleInputChange} />
-          <CustomSelect field={modelField} onChange={handleInputChange} />
+          <CustomSelect field={accessField} onChange={handleInputChange} defaultValue={selectedItem.accessType} />
+          <CustomSelect field={modelField} onChange={handleInputChange} defaultValue={selectedItem.equipmentModelName} />
           {inputFields.map(field => (
-            <TypeField key={field.id} defaultValue="" field={field} onChange={handleInputChange} />
+            <TypeField key={field.id} defaultValue={selectedItem[field.id]} field={field} onChange={handleInputChange} />
           ))}
           <FormControlLabel
             control={<Switch color="secondary" checked={statusChecked} onChange={() => setStatusChecked(!statusChecked)} />}
@@ -82,14 +86,14 @@ export default function AddHomologacionSapForm({predefinedValues = {}, onSubmit}
         </DialogContent>
         <DialogActions>
           <IconLabelButton icon={<Cancel />} label={t('tpl.enhancedTable.cancel')} onClick={handleClose} />
-          <IconLabelButton icon={<Add />} label={t('add')} onClick={handleSubmit} />
+          <IconLabelButton icon={<Edit />} label={t('edit')} onClick={handleSubmit} />
         </DialogActions>
       </Dialog>
     </div>
   );
 }
 
-AddHomologacionSapForm.propTypes = {
-  predefinedValues: PropTypes.object,
+EditHomologacionSapForm.propTypes = {
+  selectedItem: PropTypes.object.isRequired,
   onSubmit: PropTypes.func
 };

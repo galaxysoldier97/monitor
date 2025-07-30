@@ -3,6 +3,7 @@ import DefaultTable from '../../../components/defaultTable/DefaultTable';
 import {EquipmentAdminCategories} from '../../../config/equipment/EquipmentImportableProperties';
 import {HomologacionSapFields} from '../../../config/equipment/HomologacionSapFields';
 import AddHomologacionSapForm from './AddHomologacionSapForm';
+import EditHomologacionSapForm from './EditHomologacionSapForm';
 import {useFetchAccessTypes} from '../../../hooks/useFetchAccessTypes';
 
 
@@ -16,6 +17,7 @@ export default function HomologacionSapPage(){
       showEditButton
       showDeleteButton={false}
       AddActionButton={AddHomologacionSapForm}
+      EditActionComponent={EditHomologacionSapForm}
     />
   );
 }

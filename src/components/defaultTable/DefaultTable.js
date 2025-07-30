@@ -14,7 +14,7 @@ import IconButton from "../iconButton/IconButton";
 import { Table } from "../table/Table";
 import {useTranslation} from "react-i18next";
 
-export default function DefaultTable({columnHeader, entity, isFilterable = true, isPageable = true, showAddButton = true, detailLink, showDetailsButton, showEditButton, showDeleteButton, predefinedValues, controlled = true, hasRerendered, overrideRows, AddActionButton}){
+export default function DefaultTable({columnHeader, entity, isFilterable = true, isPageable = true, showAddButton = true, detailLink, showDetailsButton, showEditButton, showDeleteButton, predefinedValues, controlled = true, hasRerendered, overrideRows, AddActionButton, EditActionComponent}){
   const { t } = useTranslation();
   const { filter, addItem, deleteItem, updateItem, handleFilter, rows, defaultPagination, handlePagination, rowsNumber, resetFilter, error, resetError, loading } = useTableActions(entity, predefinedValues, controlled, overrideRows, hasRerendered);
   const [action, setAction] = useState('');
@@ -128,13 +128,20 @@ export default function DefaultTable({columnHeader, entity, isFilterable = true,
         )}
         {showEditButton &&
           <div onClick={() => setAction('Edit')}>
-            <EditButton
-              headers={columnHeader.filter(h => h.editable)}
-              entity={entityName}
-              selectedItem={selectedItem}
-              itemPrimaryKey={columnHeader[1].id || ''}
-              initialValues={data}
-              onSubmit={updateItem}/>
+            {EditActionComponent ? (
+              <EditActionComponent
+                selectedItem={selectedItem}
+                onSubmit={updateItem}
+              />
+              ) : (
+              <EditButton
+                headers={columnHeader.filter(h => h.editable)}
+                entity={entityName}
+                selectedItem={selectedItem}
+                itemPrimaryKey={columnHeader[1].id || ''}
+                initialValues={data}
+                onSubmit={updateItem}/>
+            )}
           </div>}
         {showDeleteButton &&
           <div onClick={() => setAction('Delete')}>
@@ -181,5 +188,6 @@ DefaultTable.propTypes = {
   showAddButton: PropTypes.bool,
   hasRerendered: PropTypes.func,
   AddActionButton: PropTypes.node,
+  EditActionComponent: PropTypes.elementType,
   overrideRows: PropTypes.array,
 };
