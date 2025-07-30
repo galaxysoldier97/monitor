@@ -21,22 +21,26 @@ export default function AddHomologacionSapForm({predefinedValues = {}, onSubmit}
   const [statusChecked, setStatusChecked] = useState(true);
 
   useEffect(() => {
-    axios.get(`${Backend.equipments.equipmentModelsAccessTypes.url}?category=ANCILLARY`, Auth.authorize())
-      .then(res => {
-        const opts = res.data.map(v => ({id: v, key: v, value: v}));
-        setAccessOptions(opts);
-      });
-  }, []);
+    if (open) {
+      axios.get(`${Backend.equipments.equipmentModelsAccessTypes.url}?category=ANCILLARY`, Auth.authorize())
+        .then(res => {
+          const opts = res.data.map(v => ({id: v, key: v, value: v}));
+          setAccessOptions(opts);
+        });
+    }
+  }, [open]);
 
   useEffect(() => {
-    if(formValues.accessType){
+    if(open && formValues.accessType){
       axios.get(`${Backend.equipments.equipmentModelsNames.url}?category=ANCILLARY&accessType=${formValues.accessType}`, Auth.authorize())
         .then(res => {
           const opts = res.data.map(v => ({id: v.id, key: v.name, value: v.name}));
           setModelOptions(opts);
         });
+    } else if (!open) {
+      setModelOptions([]);
     }
-  }, [formValues.accessType]);
+  }, [formValues.accessType, open]);
 
   const handleInputChange = (event) => {
     const { id, value } = event.target;
@@ -49,7 +53,12 @@ export default function AddHomologacionSapForm({predefinedValues = {}, onSubmit}
   };
 
   const handleClickOpen = () => setOpen(true);
-  const handleClose = () => { setOpen(false); setFormValues({}); };
+  const handleClose = () => {
+    setOpen(false);
+    setFormValues({});
+    setAccessOptions([]);
+    setModelOptions([]);
+  };
 
   const handleSubmit = () => {
     const { accessType, ...dataToSubmit } = { ...predefinedValues, ...formValues };
