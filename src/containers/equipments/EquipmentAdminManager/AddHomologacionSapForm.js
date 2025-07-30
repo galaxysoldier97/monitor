@@ -40,9 +40,9 @@ export default function AddHomologacionSapForm({predefinedValues = {}, onSubmit}
 
   const handleInputChange = (event) => {
     const { id, value } = event.target;
-    if (id === 'equipmentModelId') {
+    if (id === 'equipmentModelName') {
       const option = modelOptions.find(o => o.value === value);
-      setFormValues(prev => ({...prev, [id]: option ? option.id : value}));
+      setFormValues(prev => ({...prev, equipmentModelId: option ? option.id : value, equipmentModelName: value}));
     } else {
       setFormValues(prev => ({...prev, [id]: value}));
     }
@@ -59,7 +59,7 @@ export default function AddHomologacionSapForm({predefinedValues = {}, onSubmit}
   };
 
   const accessField = {...HomologacionSapFields.find(f => f.id === 'accessType'), values: accessOptions};
-  const modelField = {...HomologacionSapFields.find(f => f.id === 'equipmentModelId'), values: modelOptions};
+  const modelField = {...HomologacionSapFields.find(f => f.id === 'equipmentModelName'), values: modelOptions};
   const inputFields = HomologacionSapFields.filter(f => ['idMaterialSap', 'nameSap'].includes(f.id));
 
   return (

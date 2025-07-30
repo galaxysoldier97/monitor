@@ -20,23 +20,29 @@ export default function EditHomologacionSapForm({selectedItem, onSubmit}) {
   const [statusChecked, setStatusChecked] = useState(true);
 
   useEffect(() => {
-    axios.get(`${Backend.equipments.equipmentModelsAccessTypes.url}?category=ANCILLARY`, Auth.authorize())
-      .then(res => {
-        const opts = res.data.map(v => ({id: v, key: v, value: v}));
-        setAccessOptions(opts);
-      });
-  }, []);
-
-  useEffect(() => {
-    const access = formValues.accessType || selectedItem.accessType;
-    if(access){
-      axios.get(`${Backend.equipments.equipmentModelsNames.url}?category=ANCILLARY&accessType=${access}`, Auth.authorize())
+    if(open){
+      axios.get(`${Backend.equipments.equipmentModelsAccessTypes.url}?category=ANCILLARY`, Auth.authorize())
         .then(res => {
-          const opts = res.data.map(v => ({id: v.id, key: v.name, value: v.name}));
-          setModelOptions(opts);
+          const opts = res.data.map(v => ({id: v, key: v, value: v}));
+          setAccessOptions(opts);
         });
     }
-  }, [formValues.accessType, selectedItem.accessType]);
+  }, [open]);
+
+  useEffect(() => {
+    if(open){
+      const access = formValues.accessType || selectedItem.accessType;
+      if(access){
+        axios.get(`${Backend.equipments.equipmentModelsNames.url}?category=ANCILLARY&accessType=${access}`, Auth.authorize())
+          .then(res => {
+            const opts = res.data.map(v => ({id: v.id, key: v.name, value: v.name}));
+            setModelOptions(opts);
+          });
+      } else {
+        setModelOptions([]);
+      }
+    }
+  }, [formValues.accessType, selectedItem.accessType, open]);
 
   useEffect(() => {
     setStatusChecked(selectedItem.status !== 'Deshabilitado');
@@ -44,26 +50,31 @@ export default function EditHomologacionSapForm({selectedItem, onSubmit}) {
 
   const handleInputChange = event => {
     const {id, value} = event.target;
-    if (id === 'equipmentModelId') {
+    if (id === 'equipmentModelName') {
       const option = modelOptions.find(o => o.value === value);
-      setFormValues(prev => ({...prev, [id]: option ? option.id : value, equipmentModelName: value}));
+      setFormValues(prev => ({...prev, equipmentModelId: option ? option.id : value, equipmentModelName: value}));
     } else {
       setFormValues(prev => ({...prev, [id]: value}));
     }
   };
 
   const handleClickOpen = () => setOpen(true);
-  const handleClose = () => { setOpen(false); setFormValues({}); };
+  const handleClose = () => {
+    setOpen(false);
+    setFormValues({});
+    setAccessOptions([]);
+    setModelOptions([]);
+  };
 
   const handleSubmit = () => {
     const status = statusChecked ? 'Habilitado' : 'Deshabilitado';
-    const dataToSubmit = {...selectedItem, ...formValues, status};
-    onSubmit(selectedItem, dataToSubmit);
+    const { accessType, equipmentModelName, ...rest } = { ...selectedItem, ...formValues, status };
+    onSubmit(selectedItem, rest);
     handleClose();
   };
 
   const accessField = {...HomologacionSapFields.find(f => f.id === 'accessType'), values: accessOptions};
-  const modelField = {...HomologacionSapFields.find(f => f.id === 'equipmentModelId'), values: modelOptions};
+  const modelField = {...HomologacionSapFields.find(f => f.id === 'equipmentModelName'), values: modelOptions};
   const inputFields = HomologacionSapFields.filter(f => ['idMaterialSap', 'nameSap'].includes(f.id));
 
   return (
