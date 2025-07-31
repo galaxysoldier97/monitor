@@ -15,11 +15,12 @@ import { useTranslation } from 'react-i18next';
 
 export default function EditHomologacionSapForm({ selectedItem, onSubmit }) {
   const { t } = useTranslation();
-  const [open, setOpen] = useState(true); // abierto directamente
+  const [open, setOpen] = useState(false);
   const [formValues, setFormValues] = useState({});
   const [accessOptions, setAccessOptions] = useState([]);
   const [modelOptions, setModelOptions] = useState([]);
   const [statusChecked, setStatusChecked] = useState(true);
+  const handleClickOpen = () => setOpen(true);
 
   useEffect(() => {
     if (open) {
@@ -95,7 +96,11 @@ export default function EditHomologacionSapForm({ selectedItem, onSubmit }) {
   const inputFields = HomologacionSapFields.filter(f => ['idMaterialSap', 'nameSap'].includes(f.id));
 
   return (
-    <Dialog
+    <div>
+      <div onClick={handleClickOpen} className="edit-button-container">
+        <Edit />
+      </div>
+      <Dialog
       className="form-dialog-container"
       open={open}
       onClose={handleClose}
@@ -150,6 +155,7 @@ export default function EditHomologacionSapForm({ selectedItem, onSubmit }) {
         <IconLabelButton icon={<Edit />} label={t('edit')} onClick={handleSubmit} />
       </DialogActions>
     </Dialog>
+    </div>
   );
 }
 

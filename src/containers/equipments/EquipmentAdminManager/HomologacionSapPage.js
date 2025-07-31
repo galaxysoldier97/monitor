@@ -15,7 +15,7 @@ export default function HomologacionSapPage(){
       showEditButton
       showDeleteButton={false}
       AddActionButton={AddHomologacionSapForm}
-      EditActionButtons={EditHomologacionSapForm}
+      EditActionComponent={EditHomologacionSapForm}
     />
   );
 }
