@@ -121,6 +121,8 @@ export const Table = ({
 
                                 if(typeof cellValue === 'boolean'){
                                   cellValue = <BooleanInfoIcon value={cellValue} />;
+                                }else if(header?.translate === false){
+                                  // Keep raw value without translation
                                 }else{
                                   cellValue = t(cellValue);
                                 }

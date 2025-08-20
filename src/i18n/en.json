@@ -414,6 +414,7 @@
   "serviceCategory": "Category",
   "serviceActivity": "Activity",
   "creationDate": "Creation date",
+  "updateDate": "Update date",
   "status": "Status",
   "statusAction": "Action to update status",
   "service": "Service",

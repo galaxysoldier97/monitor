@@ -422,6 +422,7 @@
   "equipmentCategory": "Catégorie",
   "serviceActivity": "Activité",
   "creationDate": "Date de création",
+  "updateDate": "Date de mise à jour",
   "status": "Statut",
   "statusAction": "Action pour modifier le statut",
   "service": "Service",
