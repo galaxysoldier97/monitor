@@ -8,5 +8,6 @@ export const EquipmentsAdminTabs = Object.freeze({
   EQUIPMENT_MODEL: 'equipmentModel',
   PLMN: 'plmn',
   BULK_UPLOAD: 'bulk_upload',
+  STANDARD_LOADS: 'standardLoads',
   HOMOLOGACION_SAP: 'homologacionSap'
 });

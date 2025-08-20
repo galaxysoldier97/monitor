@@ -9,6 +9,7 @@ export class EquipmentAdminCategories {
   static FILE_CONFIGURATION = new EquipmentAdminCategories('FileConfiguration', false);
   static EQUIPMENT_MODEL = new EquipmentAdminCategories('EquipmentModel', false);
   static PLMN = new EquipmentAdminCategories('Plmn', true);
+  static STANDARD_LOADS = new EquipmentAdminCategories('StandardLoads', false);
   static HOMOLOGACION_SAP = new EquipmentAdminCategories('HomologacionSap', false);
 
   constructor(category, isFilterable) {
@@ -29,5 +30,6 @@ export const categoriesEquipmentImport = [
   {key: 'SimCardGenerationConfiguration', value: t('simCardGenerationConfiguration')},
   {key: 'FileConfiguration', value: t('fileConfiguration')},
   {key: 'HomologacionSap', value: t('homologacionSap')},
+  {key: 'StandardLoads', value: t('standardLoads')},
   {key: 'DeliveryFile', value: t('deliveryFile')}
 ];

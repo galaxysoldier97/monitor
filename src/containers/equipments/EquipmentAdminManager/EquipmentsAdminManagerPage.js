@@ -11,6 +11,7 @@ import ConfigurationFilePage from "./ConfigurationFilePage";
 import EquipmentJobPage from "./EquipmentJobPage";
 import EquipmentBulkUploadPage from "./EquipmentBulkUploadPage";
 import HomologacionSapPage from "./HomologacionSapPage";
+import StandardLoadsPage from "./StandardLoadsPage";
 
 export default function EquipmentsAdminManagerPage() {
 
@@ -24,6 +25,7 @@ export default function EquipmentsAdminManagerPage() {
         [EquipmentsAdminTabs.FILE_CONFIGURATION]: ConfigurationFilePage,
         [EquipmentsAdminTabs.JOB_EQUIPMENT]: EquipmentJobPage,
         [EquipmentsAdminTabs.BULK_UPLOAD]: EquipmentBulkUploadPage,
+        [EquipmentsAdminTabs.STANDARD_LOADS]: StandardLoadsPage,
         [EquipmentsAdminTabs.HOMOLOGACION_SAP]: HomologacionSapPage
     };
 
