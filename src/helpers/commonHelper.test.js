@@ -17,7 +17,7 @@ describe('getDisplayedDateTime', () => {
     },
   );
   test('getDisplayedDateTime should display correct date time format', () => {
-    const result = getDisplayedDateTime(1);
+    const result = getDisplayedDateTime(1000);
     expect(result).toMatch(/01\/01\/1970\s+00:00:01/);
   });
 });
