@@ -6,10 +6,8 @@ import FormControl from "@material-ui/core/FormControl";
 import {useTranslation} from "react-i18next";
 export default function CustomSelect({ field, defaultValue, onChange }) {
   const { t } = useTranslation();
-  const initialSelectedValue = defaultValue != null ? defaultValue : field?.values?.[0]?.value || '';
-  const [selectedValue, setSelectedValue] = useState(
-    typeof initialSelectedValue === 'boolean' || initialSelectedValue === 'true' || initialSelectedValue === 'false' ? t(initialSelectedValue) : initialSelectedValue
-  );
+  const initialSelectedValue = defaultValue != null ? defaultValue : field?.values?.[0]?.key || field?.values?.[0]?.value || '';
+  const [selectedValue, setSelectedValue] = useState(initialSelectedValue);
 
   if (!Array.isArray(field.values) || (field.values.length > 0 && !field.values.every(item => 'id' in item && 'key' in item && 'value' in item))) {
     console.warn(`Invalid format in ${field.key || field.id} field values.
@@ -19,15 +17,15 @@ export default function CustomSelect({ field, defaultValue, onChange }) {
   const handleChange = (event) => {
     let value = event.target.value;
     setSelectedValue(value);
-    if((typeof value !== "string" && typeof value !== "boolean") || value === t('all')){
+    if((typeof value !== "string" && typeof value !== "boolean") || value === '' || value === t('all')){
       value = null;
     }
-    onChange({ target: { id: field.id, value: value } });
+    onChange({ target: { id: field.id, value } });
   };
 
   useEffect(() => {
     if(defaultValue == null && field?.values?.length > 0){
-      handleChange({target: { value: t(field?.values?.[0]?.value) }});
+      handleChange({target: { value: field?.values?.[0]?.key || field?.values?.[0]?.value }});
     }
   }, [defaultValue]);
 
@@ -48,7 +46,7 @@ export default function CustomSelect({ field, defaultValue, onChange }) {
           return(
             <MenuItem
               key={`${field.id}-${index}`}
-              value={t(option.value)}
+              value={option.key ?? option.value}
             >
               {t(option.value)}
             </MenuItem>
