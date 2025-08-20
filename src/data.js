@@ -348,6 +348,9 @@ export const Backend = {
     homologacionMaterialSap: {
       url: Config.tecrepApiEquipmentsUrl + '/api/v2/private/auth/homologacionMaterialSap',
     },
+    standardLoads: {
+      url: Config.tecrepApiEquipmentsUrl + '/api/v2/private/auth/standard-loads',
+    },
     jobConfiguration: {
       url: `${Config.tecrepApiEquipmentsUrl}/api/v1/private/auth/job/configuration`
     },
