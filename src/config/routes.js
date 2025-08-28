@@ -43,6 +43,7 @@ const IpAddressesManagerPage = React.lazy( () => import('../containers/resources
 const IpAddressInfoPage = React.lazy( () => import('../containers/resources/IpAddressesManager/IpAddressInfoPage'));
 const ProvisioningProductDetailsPage = React.lazy(() => import('../containers/services/ProvisioningProductDetailsPage'));
 const EsimNotificationInfoPage = React.lazy(() => import('../containers/equipments/SimcardManager/EsimNotificationInfoPage'));
+const CargaCertificadaPage = React.lazy(() => import('../containers/equipments/CargaCertificada/CargaCertificadaPage'));
 export const routePaths = {
   street: '/streets',
   provTagInfo: '/provTagInfo/:tagId/provTagActionInfo/:tagActionId',
@@ -72,6 +73,7 @@ export const routePaths = {
   postalAddresses: '/postaladresses',
   buildings: '/buildings',
   eSimNotification: '/esim/notification/:equipmentId',
+  certifiedLoad: '/certifiedLoad',
   buildingMaps: '/map'
 };
 
@@ -179,6 +181,12 @@ export const ROUTES = {
     exact: true,
     path: routePaths.ancillaryEquipmentsInfo,
     content: <AncillaryEquipmentInfoPage />,
+  },
+  certifiedLoad: {
+    scopes: [resourcesScopes.ancillaryEquipments.read],
+    exact: true,
+    path: routePaths.certifiedLoad,
+    content: <CargaCertificadaPage />,
   },
   equipmentsAdmin: {
     scopes: [resourcesScopes.equipmentsAdmin.read],
