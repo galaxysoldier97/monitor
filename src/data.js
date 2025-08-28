@@ -83,6 +83,14 @@ export const System = {
       category: 'equipments',
     },
     {
+      id: 'certifiedLoad',
+      text: t('menu.certifiedLoad'),
+      icon: <Storefront />,
+      link: ROUTES.certifiedLoad.path,
+      requiredPermissions: [resourcesScopes.ancillaryEquipments.read],
+      category: 'equipments',
+    },
+    {
       id: 'equipmentsAdmin',
       text: t('menu.admin'),
       icon: <Settings />,
@@ -350,6 +358,10 @@ export const Backend = {
     },
     standardLoads: {
       url: Config.tecrepApiEquipmentsUrl + '/api/v2/private/auth/standard-loads',
+    },
+    // Single standard load used to fetch its items
+    standardLoad: {
+      url: Config.tecrepApiEquipmentsUrl + '/api/v1/private/auth/standard-load',
     },
     jobConfiguration: {
       url: `${Config.tecrepApiEquipmentsUrl}/api/v1/private/auth/job/configuration`
