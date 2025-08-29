@@ -36,6 +36,7 @@ const CargaCertificadaPage = () => {
   const [items, setItems] = useState({ models: [], groups: [], materials: [] });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [itemsLoaded, setItemsLoaded] = useState(false);
 
   const fetchItems = async () => {
     if (!selectedWarehouse) return;
@@ -50,6 +51,7 @@ const CargaCertificadaPage = () => {
       setItems({ models: [], groups: [], materials: [] });
       setError('Este carrito no tiene estándar asociado.');
       setLoading(false);
+      setItemsLoaded(true);
       return;
     }
     setLoading(true);
@@ -76,6 +78,7 @@ const CargaCertificadaPage = () => {
       });
     } finally {
       setLoading(false);
+      setItemsLoaded(true);
     }
   };
 
@@ -110,12 +113,19 @@ const CargaCertificadaPage = () => {
     console.log(payload);
   };
 
+  const handleSelectWarehouse = (wh) => {
+    setSelectedWarehouse(wh);
+    setItems({ models: [], groups: [], materials: [] });
+    setError(null);
+    setItemsLoaded(false);
+  };
+
   return (
     <Box p={2}>
       <Typography variant="h4" gutterBottom>Carga Certificada</Typography>
 
       <WarehouseSearch
-        onSelect={setSelectedWarehouse}
+        onSelect={handleSelectWarehouse}
         selectedWarehouse={selectedWarehouse}
         selectedStorageId={selectedStorageId}
         onStorageSelect={(id /*, storageObj */) => setSelectedStorageId(id)}
@@ -123,35 +133,34 @@ const CargaCertificadaPage = () => {
         onStart={handleStart}
       />
 
-      {selectedWarehouse && (
-        <Box mt={2} mb={2}>
-          <Typography variant="h6">Detalle del carrito</Typography>
-          <Typography>Nombre: {selectedWarehouse.name}</Typography>
-          <Typography>SAP: {selectedWarehouse.resellerCode}</Typography>
-          <Box display="flex" alignItems="center" style={{ gap: 8 }}>
-            <Typography>Tipo:</Typography>
-            <Chip label={selectedWarehouse.type} size="small" />
-          </Box>
-          <Typography>idStandar: {selectedWarehouse.idStandar}</Typography>
-          {selectedStorageId != null && (
-            <Typography>Bodega seleccionada (id): {selectedStorageId}</Typography>
-          )}
-        </Box>
-      )}
-
       {loading && <LinearProgress />}
-      {!loading && error && (
+      {itemsLoaded && error && !loading && (
         <Box mb={2} p={2} borderRadius={4} bgcolor="#fdecea" color="#b71c1c">
           {error}
         </Box>
       )}
-      {!loading && !error && selectedWarehouse && (
-        <StandardItemsTable
-          models={items.models}
-          groups={items.groups}
-          materials={items.materials}
-          onExport={handleExport}
-        />
+      {itemsLoaded && !loading && !error && selectedWarehouse && (
+        <>
+          <Box mt={2} mb={2}>
+            <Typography variant="h6">Detalle del carrito</Typography>
+            <Typography>Nombre: {selectedWarehouse.name}</Typography>
+            <Typography>SAP: {selectedWarehouse.resellerCode}</Typography>
+            <Box display="flex" alignItems="center" style={{ gap: 8 }}>
+              <Typography>Tipo:</Typography>
+              <Chip label={selectedWarehouse.type} size="small" />
+            </Box>
+            <Typography>idStandar: {selectedWarehouse.idStandar}</Typography>
+            {selectedStorageId != null && (
+              <Typography>Bodega seleccionada (id): {selectedStorageId}</Typography>
+            )}
+          </Box>
+          <StandardItemsTable
+            models={items.models}
+            groups={items.groups}
+            materials={items.materials}
+            onExport={handleExport}
+          />
+        </>
       )}
     </Box>
   );
