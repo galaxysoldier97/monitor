@@ -57,8 +57,8 @@ const StandardItemsTable = ({ models = [], groups = [], materials = [], onExport
           <TableHead>
             <TableRow>
               <TableCell>Nombre</TableCell>
-              <TableCell>Disponible (Mínimo)</TableCell>
-              <TableCell>Por Cargar (Máximo)</TableCell>
+              <TableCell>Disponible</TableCell>
+              <TableCell>Por Cargar</TableCell>
               <TableCell>Leído/Cargado</TableCell>
               <TableCell>Acción</TableCell>
             </TableRow>
@@ -120,7 +120,7 @@ const StandardItemsTable = ({ models = [], groups = [], materials = [], onExport
       </TableContainer>
       {hasRows && (
         <Box textAlign="right">
-          <Button variant="contained" onClick={exportData}>Exportar cambios</Button>
+         {/*  <Button variant="contained" onClick={exportData}>Exportar cambios</Button> */}
         </Box>
       )}
     </Box>
