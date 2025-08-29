@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Box, Typography, Chip, LinearProgress } from '@material-ui/core';
 import WarehouseSearch from './WarehouseSearch';
 import StandardItemsTable from './StandardItemsTable';
@@ -37,50 +37,67 @@ const CargaCertificadaPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      if (!selectedWarehouse) return;
-   // Normaliza: trata undefined, null, "null", "" y NaN como SIN estándar
-      const raw = selectedWarehouse.idStandar;
-      const normalized =
-        raw === undefined || raw === null || raw === '' || raw === 'null'
-          ? null
-          : raw;
+  const fetchItems = async () => {
+    if (!selectedWarehouse) return;
+    // Normaliza: trata undefined, null, "null", "" y NaN como SIN estándar
+    const raw = selectedWarehouse.idStandar;
+    const normalized =
+      raw === undefined || raw === null || raw === '' || raw === 'null'
+        ? null
+        : raw;
 
-      if (normalized === null) {
-        setItems({ models: [], groups: [], materials: [] });
-        setError('Este carrito no tiene estándar asociado.');
-        setLoading(false);
-        return;
-      }
-      setLoading(true);
-      setError(null);
-       try {
-        const res = await fetch(
-          `${Backend.equipments.standardLoad.url}/${selectedWarehouse.idStandar}/items`,
-          Auth.authorize()
-        );
-        if (!res.ok) throw new Error('Error');
-        const data = await res.json();
-        setItems({
-          models: data.model || [],
-          groups: data.group || [],
-          materials: data.material || []
-        });
-      } catch (e) {
-        console.error(e);
-        setError('Fallo obteniendo ítems, usando datos locales');
-        setItems({
-          models: STANDARD_ITEMS_MOCK.model,
-          groups: STANDARD_ITEMS_MOCK.group,
-          materials: STANDARD_ITEMS_MOCK.material
-        });
-       } finally {
-        setLoading(false);
-      }
-    };
-    fetchItems();
-  }, [selectedWarehouse]);
+    if (normalized === null) {
+      setItems({ models: [], groups: [], materials: [] });
+      setError('Este carrito no tiene estándar asociado.');
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch(
+        `${Backend.equipments.standardLoad.url}/${selectedWarehouse.idStandar}/items`,
+        Auth.authorize()
+      );
+      if (!res.ok) throw new Error('Error');
+      const data = await res.json();
+      setItems({
+        models: data.model || [],
+        groups: data.group || [],
+        materials: data.material || [],
+      });
+    } catch (e) {
+      console.error(e);
+      setError('Fallo obteniendo ítems, usando datos locales');
+      setItems({
+        models: STANDARD_ITEMS_MOCK.model,
+        groups: STANDARD_ITEMS_MOCK.group,
+        materials: STANDARD_ITEMS_MOCK.material,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const showStartButton = selectedWarehouse?.idStandar === 2;
+
+  const handleStart = async () => {
+    if (!selectedWarehouse) return;
+    const auth = Auth.authorize();
+    try {
+      await fetch(Backend.equipments.certifiedLoad.url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', ...(auth.headers || {}) },
+        body: JSON.stringify({
+          warehouse_id: selectedStorageId,
+          car_id: selectedWarehouse.id,
+        }),
+      });
+    } catch (e) {
+      console.error(e);
+    }
+    await fetchItems();
+  };
 
   const handleExport = (materialsRead) => {
     if (!selectedWarehouse) return;
@@ -100,7 +117,10 @@ const CargaCertificadaPage = () => {
       <WarehouseSearch
         onSelect={setSelectedWarehouse}
         selectedWarehouse={selectedWarehouse}
+        selectedStorageId={selectedStorageId}
         onStorageSelect={(id /*, storageObj */) => setSelectedStorageId(id)}
+        showStartButton={showStartButton}
+        onStart={handleStart}
       />
 
       {selectedWarehouse && (

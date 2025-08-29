@@ -363,6 +363,9 @@ export const Backend = {
     standardLoad: {
       url: Config.tecrepApiEquipmentsUrl + '/api/v1/private/auth/standard-load',
     },
+    certifiedLoad: {
+      url: Config.tecrepApiEquipmentsUrl + '/api/v2/private/auth/certifiedload',
+    },
     jobConfiguration: {
       url: `${Config.tecrepApiEquipmentsUrl}/api/v1/private/auth/job/configuration`
     },
